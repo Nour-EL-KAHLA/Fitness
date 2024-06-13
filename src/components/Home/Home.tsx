@@ -1,4 +1,5 @@
 import Navbar from "../Navbar/Navbar";
+import Body from "./Body/Body";
 import Header from "./Header/Header";
 
 function Home() {
@@ -6,6 +7,7 @@ function Home() {
     <div>
       <Navbar></Navbar>
       <Header></Header>
+      <Body></Body>
     </div>
   );
 }

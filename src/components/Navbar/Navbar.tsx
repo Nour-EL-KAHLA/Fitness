@@ -1,15 +1,15 @@
-import { NavLink } from "react-router-dom";
 import gym from "../../assets/gymwhite.png";
+import Joinusbtn from "./joinusbtn";
 
 function Navbar() {
   return (
     <div>
-      <div className="top-0 z-10 fixed backdrop-filter backdrop-blur-lg w-full pt-8  ">
-        <div className="flex justify-between px-24 mx-12  h-12">
+      <div className="top-0 z-10 fixed backdrop-filter w-full pt-8  ">
+        <div className="flex justify-between px-24 mx-12  h-8">
           <div>
-            <img className="w-8 pb-2" src={gym}></img>
+            <img className="w-16 pb-2" src={gym}></img>
           </div>
-          <div className="flex justify-between ">
+          {/* <div className="flex justify-between ">
             <NavLink
               to={"/home"}
               className={({ isActive }) =>
@@ -30,10 +30,20 @@ function Navbar() {
             >
               About
             </NavLink>
-          </div>
-          <div className="font-bold text-gray-50 from-neutral-50 w-fit h-fit bg-[#EB4537] p-1 rounded-full px-4">
-            Join us
-          </div>
+          </div> */}
+          {/* <div
+            className="bg-[#FBB915] w-fit h-fit  p-1 rounded-full px-4 flex flex-row 
+            justify-center items-center hover:bg-[#fbd815] transition duration-150 ease-in-out"
+          >
+            <Link
+              to={"/signin"}
+              className="font-bold text-black from-neutral-50 "
+            >
+              Join Us Now
+            </Link>
+            <img src={forward} className="h-4 ml-2"></img>
+          </div> */}
+          <Joinusbtn></Joinusbtn>
         </div>
       </div>
     </div>
