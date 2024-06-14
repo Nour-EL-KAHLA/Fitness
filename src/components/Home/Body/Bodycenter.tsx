@@ -2,6 +2,8 @@ import home from "../../../assets/home.jpg";
 import Bodycenterelem from "./Bodycenterelem";
 import healthicon from "../../../assets/healthcare.png";
 import protection from "../../../assets/protection.png";
+import flexibility from "../../../assets/flexibility.png";
+import muscle from "../../../assets/muscle.png";
 const features: any = [
   {
     name: "Health",
@@ -16,16 +18,16 @@ const features: any = [
     icon: protection,
   },
   {
-    name: "Fitness",
-    subname: "Cardio",
+    name: "Muscles",
+    subname: "Bones",
     info: "some info",
-    icon: healthicon,
+    icon: muscle,
   },
   {
-    name: "Fitness",
-    subname: "Cardio",
+    name: "Flexibility",
+    subname: "Mobility",
     info: "some info",
-    icon: protection,
+    icon: flexibility,
   },
 ];
 function Bodycenter() {

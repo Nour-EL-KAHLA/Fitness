@@ -4,10 +4,10 @@ import Joinusbtn from "./joinusbtn";
 function Navbar() {
   return (
     <div>
-      <div className="top-0 z-10 fixed backdrop-filter w-full pt-8  ">
-        <div className="flex justify-between px-24 mx-12  h-8">
+      <div className="top-0 z-10 fixed backdrop-filter w-full pt-8 bg-opacity-20 backdrop-blur-md h-28 bg-black/20">
+        <div className="flex justify-between items-center lg:px-24 mx-12 h-8 md:px-12 px-12 ">
           <div>
-            <img className="w-16 pb-2" src={gym}></img>
+            <img className="w-16" src={gym}></img>
           </div>
           {/* <div className="flex justify-between ">
             <NavLink
