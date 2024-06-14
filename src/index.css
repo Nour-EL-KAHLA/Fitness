@@ -3,6 +3,8 @@
 @tailwind utilities;
 body::-webkit-scrollbar {
   width: 12px; /* width of the entire scrollbar */
+  height: full;
+  background-color: black;
 }
 
 body::-webkit-scrollbar-track {
