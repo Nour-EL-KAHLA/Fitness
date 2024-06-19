@@ -1,17 +1,8 @@
-import { useEffect, useState } from "react";
 import logo from "../../assets/gymwhite.png";
 import Inputfield from "./Inputfield";
-import axios from "axios";
 
 const fields: string[] = ["username", "email", "password"];
-const [user, setuser] = useState<any>();
 
-useEffect(() => {
-  axios
-    .get("/products/getAllProducts")
-    .then(({ data }) => setuser(data))
-    .catch((err) => console.log(err));
-}, []);
 function Signup() {
   return (
     <>

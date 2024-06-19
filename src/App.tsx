@@ -1,15 +1,20 @@
-import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import axios from "axios";
+
+import { Navigate, Outlet } from "react-router-dom";
 axios.defaults.baseURL = "http://127.0.0.1:8090";
 axios.defaults.withCredentials = true;
 
 function App() {
-  return (
-    <div>
+  const isUserValid: boolean = true;
+
+  return isUserValid ? (
+    <>
       <Navbar></Navbar>
-      <Home></Home>
-    </div>
+      <Outlet />
+    </>
+  ) : (
+    <Navigate to={"/signin"} />
   );
 }
 
