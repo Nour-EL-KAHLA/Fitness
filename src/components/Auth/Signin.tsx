@@ -1,7 +1,21 @@
+import axios from "axios";
 import logo from "../../assets/gymwhite.png";
 import Inputfield from "./Inputfield";
-const fields: string[] = ["email", "password"];
+import { useForm } from "react-hook-form";
+
+const onSubmit = (data: any) => {
+  console.log(data);
+  axios.post("/auth/signin", data);
+};
+const fields: string[] = ["email", "password", "username"];
 function Signin() {
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      username: "",
+      password: "",
+      email: "",
+    },
+  });
   return (
     <>
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -12,9 +26,28 @@ function Signin() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
-          {fields.map((Element: string) => (
-            <Inputfield key={Element} name={Element}></Inputfield>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-6"
+          action="#"
+          method="POST"
+        >
+          {/* {fields.map((Element: string) => (
+            <Inputfield  key={Element} name={Element}></Inputfield>
+          ))} */}
+          {fields.map((Element: any) => (
+            <>
+              {" "}
+              <Inputfield key={Element} name={Element}></Inputfield>
+              <div className="mt-2">
+                <input
+                  {...register(Element, { minLength: 2 })}
+                  placeholder={Element}
+                  type={Element}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#efd74e] sm:text-sm sm:leading-6"
+                ></input>
+              </div>
+            </>
           ))}
 
           <div>
