@@ -1,13 +1,24 @@
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 
 function Logoutbtn() {
-  const auth = useAuth();
+  const navigate = useNavigate();
+  const { setUser } = useAuth();
+  const logOut = () => {
+    setUser(null);
+
+    localStorage.removeItem("site");
+
+    navigate("/");
+  };
   return (
-    <div
-      className="bg-[#FBB915] w-fit h-fit p-1 rounded-full px-4 flex flex-row 
-  justify-center items-center hover:bg-[#fbd815] transition duration-150 ease-in-out"
-    >
-      <button onClick={() => auth.logOut()}>logout</button>
+    <div>
+      <button
+        onClick={logOut}
+        className=" rounded-full w-full  hover:bg-[#fbcd15]"
+      >
+        logout
+      </button>
     </div>
   );
 }

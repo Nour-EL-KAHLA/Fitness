@@ -1,11 +1,10 @@
 import gym from "../../assets/gymwhite.png";
 import { useAuth } from "../../providers/AuthProvider";
-import Logoutbtn from "./Logoutbtn";
 import Usernavbar from "./Usernavbar";
 import Joinusbtn from "./joinusbtn";
 
 function Navbar() {
-  const { token } = useAuth();
+  const { user } = useAuth();
   return (
     <div>
       <div className="top-0 z-10 fixed backdrop-filter w-full pt-8 bg-opacity-20 backdrop-blur-md h-28 bg-black/20">
@@ -13,13 +12,13 @@ function Navbar() {
           <div>
             <img className="w-16" src={gym}></img>
           </div>
-          {token !== localStorage.getItem("site") ? (
+          {!user ? (
             <>
               <Joinusbtn></Joinusbtn>
             </>
           ) : (
             <>
-              <Logoutbtn></Logoutbtn>
+              {/* <Logoutbtn></Logoutbtn> */}
               <Usernavbar></Usernavbar>
             </>
           )}

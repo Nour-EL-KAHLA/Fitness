@@ -1,22 +1,26 @@
+import { Link } from "react-router-dom";
+import gymnast from "../../assets/Navbar/gymnast.png";
+import Logoutbtn from "./Logoutbtn";
+
 function Usernavbar() {
   return (
     <>
-      <div className="dropdown dropdown-end">
-        <div tabIndex={0} role="button" className="btn m-1">
-          Click
-        </div>
-        <ul
-          tabIndex={0}
-          className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
-        >
-          <li>
-            <a>Item 1</a>
+      <details className="dropdown dropdown-end">
+        <summary className="btn m-1 border-transparent hover:border-transparent bg-transparent p-0 rounded-full">
+          <img src={gymnast} className="w-16"></img>
+        </summary>
+        <ul className="menu dropdown-content rounded-box z-[1] w-36 p-2 shadow bg-[#FBB915] font-semibold text-md">
+          <li className=" transition duration-150 ease-in-out rounded-full  hover:bg-[#fbcd15]">
+            <Link to={"/profile"}> Profile</Link>
           </li>
-          <li>
-            <a>Item 2</a>
+          <li className=" transition duration-150 ease-in-out rounded-full  hover:bg-[#fbcd15]">
+            <Link to={"/program"}> Program</Link>
+          </li>
+          <li className=" transition duration-150 ease-in-out rounded-full  hover:bg-[#fbcd15]">
+            <Logoutbtn></Logoutbtn>
           </li>
         </ul>
-      </div>
+      </details>
     </>
   );
 }

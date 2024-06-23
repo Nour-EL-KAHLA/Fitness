@@ -2,9 +2,9 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 
 const PrivateRoute = () => {
-  const { token } = useAuth();
+  const { user, loading } = useAuth();
 
-  if (token !== localStorage.getItem("site")) return <Navigate to="/signin" />;
+  if (!user && !loading) return <Navigate to="/signin" />;
   return <Outlet />;
 };
 

@@ -11,6 +11,9 @@ import Authlayout from "./pages/Auth/Authlayout.tsx";
 import PrivateRoute from "./components/Auth/PrivateRoute.tsx";
 import AuthProvider from "./providers/AuthProvider.tsx";
 import Profile from "./pages/Profile/Profile.tsx";
+import Program from "./pages/Program/Program.tsx";
+// import CoachRoute from "./components/Auth/CoachRoute.tsx";
+// import Coaching from "./pages/Coaching/Coaching.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -20,10 +23,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           {/* <Route element={<App />}>
           <Route path="/" element={<Landing />}></Route>
         </Route> */}
-          <Route path="/" element={<Landing />} />
+          <Route path="/*" element={<Landing />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />}></Route>
+            <Route path="/program" element={<Program />}></Route>
           </Route>
+
           <Route element={<Authlayout />}>
             <Route path="/signin" element={<Signin />}></Route>
             <Route path="/signup" element={<Signup />}></Route>

@@ -3,8 +3,9 @@ import logo from "../../assets/gymwhite.png";
 import Inputfield from "./Inputfield";
 import { useForm } from "react-hook-form";
 // import useBearStore from "../../state/State";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
+import axios from "axios";
 
 function Signin() {
   const { register, handleSubmit } = useForm({
@@ -14,7 +15,8 @@ function Signin() {
       email: "",
     },
   });
-  const auth = useAuth();
+  const navigate = useNavigate();
+  const { setUser } = useAuth();
   // const setIsUserValid = useBearStore((state: any) => state.setIsUserValid);
   // const navigate = useNavigate();
   // const { setIsUserValid } = useBearStore();
@@ -34,9 +36,26 @@ function Signin() {
   //     );
   //   }
   // };
-  const onsubmit = async (data: any) => {
-    console.log(data);
-    auth.loginAction(data);
+
+  const loginAction = async (data: any) => {
+    try {
+      await axios
+        .post("http://127.0.0.1:8090/auth/signin", data)
+        .then((res) => {
+          localStorage.setItem("site", res.data.accessToken);
+          setUser(res.data);
+
+          navigate("/");
+        });
+    } catch (error) {
+      console.error(
+        "There has been a problem with your sign-in operation:",
+        error
+      );
+    }
+  };
+  const onsubmit = (data: any) => {
+    loginAction(data);
   };
 
   const fields: string[] = ["email", "password", "username"];
