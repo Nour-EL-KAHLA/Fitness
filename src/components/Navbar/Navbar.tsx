@@ -1,6 +1,7 @@
 import gym from "../../assets/gymwhite.png";
 import { useAuth } from "../../providers/AuthProvider";
 import Logoutbtn from "./Logoutbtn";
+import Usernavbar from "./Usernavbar";
 import Joinusbtn from "./joinusbtn";
 
 function Navbar() {
@@ -17,7 +18,10 @@ function Navbar() {
               <Joinusbtn></Joinusbtn>
             </>
           ) : (
-            <Logoutbtn></Logoutbtn>
+            <>
+              <Logoutbtn></Logoutbtn>
+              <Usernavbar></Usernavbar>
+            </>
           )}
         </div>
       </div>
