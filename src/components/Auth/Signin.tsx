@@ -1,9 +1,10 @@
-import axios from "axios";
+// import axios from "axios";
 import logo from "../../assets/gymwhite.png";
 import Inputfield from "./Inputfield";
 import { useForm } from "react-hook-form";
 // import useBearStore from "../../state/State";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../providers/AuthProvider";
 
 function Signin() {
   const { register, handleSubmit } = useForm({
@@ -13,26 +14,29 @@ function Signin() {
       email: "",
     },
   });
+  const auth = useAuth();
   // const setIsUserValid = useBearStore((state: any) => state.setIsUserValid);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const { setIsUserValid } = useBearStore();
-  const onsubmit = async (data: any) => {
-    try {
-      const response = await axios.post("/auth/signin", data);
+  // const onsubmit = async (data: any) => {
+  //   try {
+  //     const response = await axios.post("/auth/signin", data);
 
-      // Assuming the response contains a status or user data indicating successful sign-in
-      if (response.status === 200) {
-        const token = response.data.accessToken;
-        localStorage.setItem("token", token);
-        // setIsUserValid(true);
-        navigate("/"); // Navigate to the home page
-      }
-    } catch (error) {
-      console.error(
-        "There has been a problem with your sign-in operation:",
-        error
-      );
-    }
+  //     if (response.status === 200) {
+  //       const token = response.data.accessToken;
+  //       localStorage.setItem("token", token);
+
+  //       navigate("/");}
+  //   } catch (error) {
+  //     console.error(
+  //       "There has been a problem with your sign-in operation:",
+  //       error
+  //     );
+  //   }
+  // };
+  const onsubmit = async (data: any) => {
+    console.log(data);
+    auth.loginAction(data);
   };
 
   const fields: string[] = ["email", "password", "username"];
