@@ -16,77 +16,71 @@ import {
   startOfToday,
 } from "date-fns";
 import { Fragment, useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { useAuth } from "../../providers/AuthProvider";
 
-const programs = [
-  {
-    id: 1,
-    name: "Leslie Alexander",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    startDatetime: "2022-05-11T13:00",
-    endDatetime: "2022-05-11T14:30",
-  },
-  {
-    id: 2,
-    name: "Michael Foster",
-    imageUrl:
-      "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    startDatetime: "2022-05-20T09:00",
-    endDatetime: "2022-05-20T11:30",
-  },
-  {
-    id: 3,
-    name: "Dries Vincent",
-    imageUrl:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    startDatetime: "2022-05-20T17:00",
-    endDatetime: "2022-05-20T18:30",
-  },
-  {
-    id: 4,
-    name: "Leslie Alexander",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    startDatetime: "2022-06-09T13:00",
-    endDatetime: "2022-06-09T14:30",
-  },
-  {
-    id: 5,
-    name: "Michael Foster",
-    imageUrl:
-      "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    startDatetime: "2022-05-13T14:00",
-    endDatetime: "2022-05-13T14:30",
-  },
-];
+// const programs = [
+//   {
+//     id: 1,
+//     name: "Leslie Alexander",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+//     startDatetime: "2024-06-25T13:00",
+//     endDatetime: "2024-06-26T14:30",
+//   },
+//   {
+//     id: 2,
+//     name: "Michael Foster",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+//     startDatetime: "2024-06-25T14:00",
+//     endDatetime: "2024-06-25T16:00",
+//   },
+//   {
+//     id: 3,
+//     name: "Dries Vincent",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+//     startDatetime: "2022-05-20T17:00",
+//     endDatetime: "2022-05-20T18:30",
+//   },
+//   {
+//     id: 4,
+//     name: "Leslie Alexander",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+//     startDatetime: "2022-06-09T13:00",
+//     endDatetime: "2022-06-09T14:30",
+//   },
+//   {
+//     id: 5,
+//     name: "Michael Foster",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+//     startDatetime: "2022-05-13T14:00",
+//     endDatetime: "2022-05-14T14:30",
+//   },
+// ];
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
 function Program() {
-  // const { user, loading } = useAuth();
-  // useEffect(() => {
-  //   if (!loading) console.log(user);
-  // }, [loading]);
-  // if (loading && !user) return <div>loading</div>;
-
-  const getPrograms = async () => {
-    try {
-      const headers = {
-        Authorization: `Bearer ${localStorage.getItem("site")}`,
-      };
-      await axios
-        .get("http://127.0.0.1:8090/usermanagement/user/4", { headers })
-        .then((res) => {
-          console.log(res.data);
-        });
-    } catch (error) {
-      console.error("There has been a problem with getting programs", error);
-    }
-  };
+  // const getPrograms = async () => {
+  //   try {
+  //     const headers = {
+  //       Authorization: `Bearer ${localStorage.getItem("site")}`,
+  //     };
+  //     await axios
+  //       .get("http://127.0.0.1:8090/usermanagement/user/4", { headers })
+  //       .then((res) => {
+  //         console.log(res.data);
+  //       });
+  //   } catch (error) {
+  //     console.error("There has been a problem with getting programs", error);
+  //   }
+  // };
 
   let today = startOfToday();
   let [selectedDay, setSelectedDay] = useState(today);
@@ -108,10 +102,28 @@ function Program() {
     setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
   }
 
-  let selectedDayprograms = programs.filter((program) =>
+  const { user, loading } = useAuth();
+  useEffect(() => {
+    if (!loading) console.log(user);
+  }, [loading]);
+  if (loading && !user) return <div>loading</div>;
+  // const bb = user.program.programExercises.map((program: any) => {
+  //   return program;
+  // });
+  const programs = user.program.programExercises.map((ex: any) => {
+    return {
+      id: ex.id,
+      name: ex.exercise.name,
+      startDatetime: ex.dayOfWeek,
+      endDatetime: ex.dayOfWeek,
+      imageUrl:
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    };
+  });
+  console.log(programs);
+  let selectedDayprograms = programs.filter((program: any) =>
     isSameDay(parseISO(program.startDatetime), selectedDay)
   );
-
   return (
     <>
       <Navbar></Navbar>
@@ -196,7 +208,7 @@ function Program() {
                     </button>
 
                     <div className="w-1 h-1 mx-auto mt-1">
-                      {programs.some((program) =>
+                      {programs.some((program: any) =>
                         isSameDay(parseISO(program.startDatetime), day)
                       ) && (
                         <div className="w-1 h-1 rounded-full bg-sky-500"></div>
@@ -215,7 +227,7 @@ function Program() {
               </h2>
               <ol className="mt-4 space-y-1 text-sm leading-6 text-gray-500">
                 {selectedDayprograms.length > 0 ? (
-                  selectedDayprograms.map((program) => (
+                  selectedDayprograms.map((program: any) => (
                     <Workout program={program} key={program.id} />
                   ))
                 ) : (
@@ -229,8 +241,8 @@ function Program() {
     </>
   );
 }
-
-function Workout(program: any) {
+//@ts-ignore
+function Workout({ program }) {
   let startDateTime = parseISO(program.startDatetime);
   let endDateTime = parseISO(program.endDatetime);
 
