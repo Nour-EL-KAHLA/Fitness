@@ -1,6 +1,6 @@
 import Navbar from "../../components/Navbar/Navbar";
 import { Menu, Transition } from "@headlessui/react";
-import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
+import { FaCaretLeft, FaCaretRight, FaEllipsisV } from "react-icons/fa";
 import {
   add,
   eachDayOfInterval,
@@ -16,72 +16,14 @@ import {
   startOfToday,
 } from "date-fns";
 import { Fragment, useEffect, useState } from "react";
-// import axios from "axios";
-import { useAuth } from "../../providers/AuthProvider";
 
-// const programs = [
-//   {
-//     id: 1,
-//     name: "Leslie Alexander",
-//     imageUrl:
-//       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-//     startDatetime: "2024-06-25T13:00",
-//     endDatetime: "2024-06-26T14:30",
-//   },
-//   {
-//     id: 2,
-//     name: "Michael Foster",
-//     imageUrl:
-//       "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-//     startDatetime: "2024-06-25T14:00",
-//     endDatetime: "2024-06-25T16:00",
-//   },
-//   {
-//     id: 3,
-//     name: "Dries Vincent",
-//     imageUrl:
-//       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-//     startDatetime: "2022-05-20T17:00",
-//     endDatetime: "2022-05-20T18:30",
-//   },
-//   {
-//     id: 4,
-//     name: "Leslie Alexander",
-//     imageUrl:
-//       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-//     startDatetime: "2022-06-09T13:00",
-//     endDatetime: "2022-06-09T14:30",
-//   },
-//   {
-//     id: 5,
-//     name: "Michael Foster",
-//     imageUrl:
-//       "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-//     startDatetime: "2022-05-13T14:00",
-//     endDatetime: "2022-05-14T14:30",
-//   },
-// ];
+import { useAuth } from "../../providers/AuthProvider";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
 function Program() {
-  // const getPrograms = async () => {
-  //   try {
-  //     const headers = {
-  //       Authorization: `Bearer ${localStorage.getItem("site")}`,
-  //     };
-  //     await axios
-  //       .get("http://127.0.0.1:8090/usermanagement/user/4", { headers })
-  //       .then((res) => {
-  //         console.log(res.data);
-  //       });
-  //   } catch (error) {
-  //     console.error("There has been a problem with getting programs", error);
-  //   }
-  // };
-
   let today = startOfToday();
   let [selectedDay, setSelectedDay] = useState(today);
   let [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy"));
@@ -116,8 +58,8 @@ function Program() {
       name: ex.exercise.name,
       startDatetime: ex.dayOfWeek,
       endDatetime: ex.dayOfWeek,
-      imageUrl:
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+      description: ex.exercise.description,
+      imageUrl: ex.exercise.photos[0],
     };
   });
   console.log(programs);
@@ -220,7 +162,7 @@ function Program() {
             </div>
             <section className="mt-12 md:mt-0 md:pl-14">
               <h2 className="font-semibold text-gray-900">
-                Schedule for{" "}
+                Workout for{" "}
                 <time dateTime={format(selectedDay, "yyyy-MM-dd")}>
                   {format(selectedDay, "MMM dd, yyy")}
                 </time>
@@ -243,9 +185,6 @@ function Program() {
 }
 //@ts-ignore
 function Workout({ program }) {
-  let startDateTime = parseISO(program.startDatetime);
-  let endDateTime = parseISO(program.endDatetime);
-
   return (
     <li className="flex items-center px-4 py-2 space-x-4 group rounded-xl focus-within:bg-gray-100 hover:bg-gray-100">
       <img
@@ -256,13 +195,7 @@ function Workout({ program }) {
       <div className="flex-auto">
         <p className="text-gray-900">{program.name}</p>
         <p className="mt-0.5">
-          <time dateTime={program.startDatetime}>
-            {format(startDateTime, "h:mm a")}
-          </time>{" "}
-          -{" "}
-          <time dateTime={program.endDatetime}>
-            {format(endDateTime, "h:mm a")}
-          </time>
+          <div>{program.description}</div>
         </p>
       </div>
       <Menu
@@ -272,7 +205,9 @@ function Workout({ program }) {
         <div>
           <Menu.Button className="-m-2 flex items-center rounded-full p-1.5 text-gray-500 hover:text-gray-600">
             <span className="sr-only">Open options</span>
-            {/* <DotsVerticalIcon className="w-6 h-6" aria-hidden="true" /> */}
+            <div className="w-6 h-6" aria-hidden="true">
+              <FaEllipsisV />
+            </div>
           </Menu.Button>
         </div>
 
