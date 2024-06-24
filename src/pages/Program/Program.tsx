@@ -15,7 +15,9 @@ import {
   parseISO,
   startOfToday,
 } from "date-fns";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import axios from "axios";
+import { useAuth } from "../../providers/AuthProvider";
 
 const programs = [
   {
@@ -65,6 +67,27 @@ function classNames(...classes: any) {
 }
 
 function Program() {
+  // const { user, loading } = useAuth();
+  // useEffect(() => {
+  //   if (!loading) console.log(user);
+  // }, [loading]);
+  // if (loading && !user) return <div>loading</div>;
+
+  const getPrograms = async () => {
+    try {
+      const headers = {
+        Authorization: `Bearer ${localStorage.getItem("site")}`,
+      };
+      await axios
+        .get("http://127.0.0.1:8090/usermanagement/user/4", { headers })
+        .then((res) => {
+          console.log(res.data);
+        });
+    } catch (error) {
+      console.error("There has been a problem with getting programs", error);
+    }
+  };
+
   let today = startOfToday();
   let [selectedDay, setSelectedDay] = useState(today);
   let [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy"));
