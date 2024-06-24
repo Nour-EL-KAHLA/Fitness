@@ -2,27 +2,27 @@ import Navbar from "./components/Navbar/Navbar";
 import axios from "axios";
 
 import { Outlet } from "react-router-dom";
-import useBearStore from "./state/State";
-import { useEffect, useState } from "react";
+// import useBearStore from "./state/State";
+// import { useEffect, useState } from "react";
 import AuthProvider from "./providers/AuthProvider";
 
 axios.defaults.baseURL = "http://127.0.0.1:8090";
 axios.defaults.withCredentials = true;
 
 function App() {
-  const { checkUserToken } = useBearStore();
-  const [isuserauth, setuserauth] = useState(false);
+  // const { checkUserToken } = useBearStore();
+  // const [isuserauth, setuserauth] = useState(false);
 
-  useEffect(() => {
-    console.log(checkUserToken());
-    // setuserauth(checkUserToken());
-    setuserauth(checkUserToken());
-    console.log(checkUserToken());
+  // useEffect(() => {
+  //   console.log(checkUserToken());
 
-    console.log(
-      "hedhi hiya " + isuserauth + "oui" + localStorage.getItem("token")
-    );
-  });
+  //   setuserauth(checkUserToken());
+  //   console.log(checkUserToken());
+
+  //   console.log(
+  //     "hedhi hiya " + isuserauth + "oui" + localStorage.getItem("token")
+  //   );
+  // });
 
   // return isUserValid ? (
   //   <>

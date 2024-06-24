@@ -1,9 +1,7 @@
-// import axios from "axios";
 import logo from "../../assets/gymwhite.png";
 import Inputfield from "./Inputfield";
 import { useForm } from "react-hook-form";
-// import useBearStore from "../../state/State";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 import axios from "axios";
 
@@ -17,25 +15,6 @@ function Signin() {
   });
   const navigate = useNavigate();
   const { setUser } = useAuth();
-  // const setIsUserValid = useBearStore((state: any) => state.setIsUserValid);
-  // const navigate = useNavigate();
-  // const { setIsUserValid } = useBearStore();
-  // const onsubmit = async (data: any) => {
-  //   try {
-  //     const response = await axios.post("/auth/signin", data);
-
-  //     if (response.status === 200) {
-  //       const token = response.data.accessToken;
-  //       localStorage.setItem("token", token);
-
-  //       navigate("/");}
-  //   } catch (error) {
-  //     console.error(
-  //       "There has been a problem with your sign-in operation:",
-  //       error
-  //     );
-  //   }
-  // };
 
   const loginAction = async (data: any) => {
     try {
@@ -76,9 +55,6 @@ function Signin() {
           action="#"
           method="POST"
         >
-          {/* {fields.map((Element: string) => (
-            <Inputfield  key={Element} name={Element}></Inputfield>
-          ))} */}
           {fields.map((Element: any, i: number) => (
             <>
               <div key={i}>
@@ -98,11 +74,14 @@ function Signin() {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-[#FBB915] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
+              className="mb-8 flex w-full justify-center rounded-md bg-[#FBB915] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
             >
               Sign in
             </button>
           </div>
+          <Link to={"/signup"} className=" text-[#FBB915] font-light ">
+            If you don't have an account pleas Signup here
+          </Link>
         </form>
       </div>
     </>
