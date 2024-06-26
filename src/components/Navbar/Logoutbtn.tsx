@@ -13,10 +13,7 @@ function Logoutbtn() {
   };
   return (
     <div>
-      <button
-        onClick={logOut}
-        className=" rounded-full w-full  hover:bg-[#fbcd15]"
-      >
+      <button onClick={logOut} className=" rounded-full w-full  ">
         logout
       </button>
     </div>

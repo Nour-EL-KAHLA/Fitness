@@ -7,6 +7,7 @@ const AuthContext = createContext<any>({});
 const AuthProvider = ({ children }: any) => {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (!user && localStorage.getItem("site")) {
       //@ts-ignore

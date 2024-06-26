@@ -10,6 +10,7 @@ function Inputfield({ name }: Inputfield) {
           className="block text-sm font-medium leading-6 text-white capitalize"
         >
           {name}
+          <span className="text-red-600"> *</span>
         </label>
       </div>
       <div className="mt-2">

@@ -4,13 +4,13 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 function Signin() {
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      username: "",
-      password: "",
       email: "",
+      password: "",
     },
   });
   const navigate = useNavigate();
@@ -22,8 +22,16 @@ function Signin() {
         .post("http://127.0.0.1:8090/auth/signin", data)
         .then((res) => {
           localStorage.setItem("site", res.data.accessToken);
-          setUser(res.data);
-
+          //@ts-ignore
+          const { jti } = jwtDecode(
+            //@ts-ignore
+            res.data.accessToken
+          );
+          axios
+            .get("http://127.0.0.1:8090/usermanagement/user/" + jti)
+            .then(({ data }) => {
+              setUser(data);
+            });
           navigate("/");
         });
     } catch (error) {
@@ -37,7 +45,7 @@ function Signin() {
     loginAction(data);
   };
 
-  const fields: string[] = ["email", "password", "username"];
+  const fields: string[] = ["email", "password"];
 
   return (
     <>
@@ -74,13 +82,14 @@ function Signin() {
           <div>
             <button
               type="submit"
-              className="mb-8 flex w-full justify-center rounded-md bg-[#FBB915] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
+              className="mb-8 flex w-full  mt-12 justify-center rounded-md bg-[#FBB915] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
             >
               Sign in
             </button>
           </div>
-          <Link to={"/signup"} className=" text-[#FBB915] font-light ">
-            If you don't have an account pleas Signup here
+          <Link to={"/signup"} className=" text-[#FBB915] font-light text-sm ">
+            If you don't have an account please{" "}
+            <span className="font-bold">Signup</span>
           </Link>
         </form>
       </div>

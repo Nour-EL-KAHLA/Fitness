@@ -1,16 +1,15 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../../providers/AuthProvider";
 import { useEffect } from "react";
+import { useAuth } from "../../providers/AuthProvider";
+import { Navigate, Outlet } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 
-const CoachRoute = () => {
+const MemberRoute = () => {
   const { user, loading } = useAuth();
-
   useEffect(() => {
-    if (!loading) console.log(user);
+    if (!loading) console.log(user.roles[0].id);
   }, [loading]);
   if (loading && !user) return <div>loading</div>;
-  if (user.roles[0].id !== 3) return <Navigate to="/" />;
+  if (user.roles[0].id !== 2) return <Navigate to="/" />;
   return (
     <>
       <Navbar></Navbar>
@@ -19,4 +18,4 @@ const CoachRoute = () => {
   );
 };
 
-export default CoachRoute;
+export default MemberRoute;

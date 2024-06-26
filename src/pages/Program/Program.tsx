@@ -45,13 +45,19 @@ function Program() {
   }
 
   const { user, loading } = useAuth();
-  useEffect(() => {
-    if (!loading) console.log(user);
-  }, [loading]);
+
   if (loading && !user) return <div>loading</div>;
   // const bb = user.program.programExercises.map((program: any) => {
   //   return program;
   // });
+  if (!user.program)
+    return (
+      <div className="mt-28">
+        {" "}
+        You are not assigned to a coach yet, please wait until we match you with
+        one of the best coaches
+      </div>
+    );
   const programs = user.program.programExercises.map((ex: any) => {
     return {
       id: ex.id,
@@ -62,6 +68,7 @@ function Program() {
       imageUrl: ex.exercise.photos[0],
     };
   });
+
   console.log(programs);
   let selectedDayprograms = programs.filter((program: any) =>
     isSameDay(parseISO(program.startDatetime), selectedDay)

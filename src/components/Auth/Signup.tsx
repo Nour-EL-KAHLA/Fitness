@@ -2,10 +2,14 @@ import { useForm } from "react-hook-form";
 import logo from "../../assets/gymwhite.png";
 import Inputfield from "./Inputfield";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 function Signup() {
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<any>({
     defaultValues: {
       username: "",
       password: "",
@@ -16,15 +20,38 @@ function Signup() {
   const { setUser } = useAuth();
 
   const signUpAction = async (data: any) => {
-    try {
-      await axios.post("http://127.0.0.1:8090/auth/signup", data).then(() => {
-        axios.post("http://127.0.0.1:8090/auth/signin", data).then((res) => {
-          localStorage.setItem("site", res.data.accessToken);
-          setUser(res.data);
+    if (!data.email || !data.username || !data.password) {
+      console.error("Missing required fields");
+      return;
+    }
 
-          navigate("/");
+    try {
+      await axios
+        .post("http://127.0.0.1:8090/auth/signup", data)
+        .then(() => {
+          // Successful sign-up logic
+          try {
+            axios
+              .post("http://127.0.0.1:8090/auth/signin", data)
+              .then((res) => {
+                localStorage.setItem("site", res.data.accessToken);
+                setUser(res.data);
+                navigate("/");
+              })
+              .catch((error) => {
+                console.error("Sign-in error:", error);
+              });
+          } catch (error) {
+            console.error(
+              "There has been a problem with your sign-in operation:",
+              error
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Sign-up error:", error);
+          // Handle sign-up error (e.g., display an error message)
         });
-      });
     } catch (error) {
       console.error(
         "There has been a problem with your sign-up operation:",
@@ -60,11 +87,22 @@ function Signup() {
                 <Inputfield name={Element} />
                 <div className="mt-2">
                   <input
-                    {...register(Element, { minLength: 2 })}
+                    {...register(Element, { required: true, minLength: 4 })}
                     placeholder={Element}
                     type={Element}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#efd74e] sm:text-sm sm:leading-6"
                   ></input>
+
+                  {errors[Element] && errors[Element]?.type === "required" && (
+                    <p className="text-red-500 text-sm mt-1">
+                      This field is required.
+                    </p>
+                  )}
+                  {errors[Element] && errors[Element]?.type === "minLength" && (
+                    <p className="text-red-500 text-sm mt-1">
+                      Minimum length of 2 characters.
+                    </p>
+                  )}
                 </div>
               </div>
             </>
@@ -73,11 +111,15 @@ function Signup() {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-[#FBB915] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
+              className="mb-8 flex w-full justify-center mt-12 rounded-md bg-[#FBB915] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
             >
               Sign up
             </button>
           </div>
+          <Link to={"/signin"} className=" text-[#FBB915] font-light text-sm ">
+            Already have an accound ? please{" "}
+            <span className="font-bold">Signin</span>
+          </Link>
         </form>
       </div>
     </>
