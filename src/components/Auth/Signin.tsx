@@ -65,9 +65,9 @@ function Signin() {
         >
           {fields.map((Element: any, i: number) => (
             <>
-              <div key={i}>
+              <div key={i} className="text-white">
                 <Inputfield name={Element} />
-                <div className="mt-2">
+                <div className="mt-2 ">
                   <input
                     {...register(Element, { minLength: 2 })}
                     placeholder={Element}

@@ -63,12 +63,11 @@ function CoachDashboard() {
       <div className="overflow-x-auto mt-28">
         <div className="text-gray-900 ">
           <div className="p-4 flex">
-            <h1 className="text-3xl">Memebers</h1>
+            <h1 className="text-3xl">Members</h1>
           </div>
           <div className="px-3 py-4 flex justify-center">
             <table className="w-full text-md bg-white shadow-md rounded mb-4">
               <thead>
-                {" "}
                 <tr className="border-b">
                   <th className="text-left p-3 px-5">Name</th>
                   <th className="text-left p-3 px-5">Sexe</th>
@@ -79,23 +78,26 @@ function CoachDashboard() {
                 {users &&
                   users.map((elem: any) => {
                     return (
-                      <tr className="border-b hover:bg-slate-100 bg-slate-50">
+                      <tr
+                        key={elem}
+                        className="border-b hover:bg-slate-100 bg-slate-50"
+                      >
                         <td className="p-3 px-5">
-                          <th className="bg-transparent">{elem?.username}</th>
+                          <div className="bg-transparent">{elem?.username}</div>
                         </td>
 
                         <td className="p-3 px-5">
-                          <th className="bg-transparent">{elem?.sexe}</th>
+                          <div className="bg-transparent">{elem?.sexe}</div>
                         </td>
                         <td className="p-3 px-5">
-                          <th className="bg-transparent">{elem?.weight}</th>
+                          <div className="bg-transparent">{elem?.weight}</div>
                         </td>
                         <td className="p-3 px-5 flex justify-end ">
                           <div
                             className="bg-[#FBB915] w-fit h-fit  flex flex-row 
   justify-center items-center hover:bg-[#fbd815] duration-150 ease-in-out p-3 px-4 gap-2 bg-gradient-to-r from-[#FBCD15] to-[#fbae15] text-black font-bold rounded-full transition-transform transform-gpu h hover:shadow-lg"
                           >
-                            <Link to={"/"}>Program</Link>
+                            <Link to={"/programEdit"}>Program</Link>
                             <div className="mt-1">
                               <IoIosFitness></IoIosFitness>
                             </div>

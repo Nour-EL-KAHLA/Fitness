@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useAuth } from "../../providers/AuthProvider";
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import Footer from "../../components/Home/Footer/Footer";
 
 function Landing() {
   const { user, loading } = useAuth();
@@ -16,6 +17,7 @@ function Landing() {
       <Navbar></Navbar>
       <Header></Header>
       <Body></Body>
+      <Footer></Footer>
     </>
   );
 }

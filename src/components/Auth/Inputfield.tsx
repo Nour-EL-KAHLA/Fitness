@@ -7,7 +7,7 @@ function Inputfield({ name }: Inputfield) {
       <div className="flex items-center justify-between">
         <label
           htmlFor={name}
-          className="block text-sm font-medium leading-6 text-white capitalize"
+          className={`lock text-sm font-medium leading-6  capitalize`}
         >
           {name}
           <span className="text-red-600"> *</span>
