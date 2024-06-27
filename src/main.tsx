@@ -17,6 +17,7 @@ import Coaching from "./pages/Coaching/Coaching.tsx";
 import MemberRoute from "./components/Auth/MemberRoute.tsx";
 import AdminRoute from "./components/Auth/AdminRoute.tsx";
 import Dashboard from "./pages/Dashboard/Dashboard.tsx";
+import Exercises from "./pages/Exercises/Exercises.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -30,6 +31,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             </Route>
             <Route element={<CoachRoute />}>
               <Route path="/coaching" element={<Coaching />}></Route>
+              <Route path="/exercises" element={<Exercises />}></Route>
             </Route>
             <Route element={<AdminRoute />}>
               <Route path="/dashboard" element={<Dashboard />}></Route>

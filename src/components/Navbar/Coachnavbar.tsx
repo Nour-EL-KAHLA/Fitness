@@ -17,6 +17,9 @@ function Coachnavbar() {
             <Link to={"/coaching"}> Coaching</Link>
           </li>
           <li className=" transition duration-150 ease-in-out rounded-full  hover:bg-[#fbcd15]">
+            <Link to={"/exercises"}> Exercises</Link>
+          </li>
+          <li className=" transition duration-150 ease-in-out rounded-full  hover:bg-[#fbcd15]">
             <Logoutbtn></Logoutbtn>
           </li>
         </ul>
