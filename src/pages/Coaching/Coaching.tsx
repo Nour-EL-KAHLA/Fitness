@@ -1,5 +1,11 @@
+import CoachDashboard from "../../components/Dashboard/CoachDashboard";
+
 function Coaching() {
-  return <div>Coaching</div>;
+  return (
+    <div>
+      <CoachDashboard></CoachDashboard>
+    </div>
+  );
 }
 
 export default Coaching;
