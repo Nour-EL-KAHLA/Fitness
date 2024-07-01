@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import logo from "../../assets/gymwhite.png";
+import logo from "../../assets/kora.png";
 import Inputfield from "./Inputfield";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -74,7 +74,7 @@ function Signup() {
   return (
     <>
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img className="mx-auto h-10 w-auto" src={logo} alt="Gym" />
+        <img className="mx-auto h-14 w-auto" src={logo} alt="Gym" />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">
           Sign up and create an account
         </h2>
@@ -96,7 +96,7 @@ function Signup() {
                     {...register(Element, { required: true, minLength: 4 })}
                     placeholder={Element}
                     type={Element}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#efd74e] sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#efd74e] sm:text-sm sm:leading-6"
                   ></input>
 
                   {errors[Element] && errors[Element]?.type === "required" && (

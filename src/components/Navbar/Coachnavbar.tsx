@@ -1,4 +1,4 @@
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import Logoutbtn from "./Logoutbtn";
 
@@ -41,12 +41,7 @@ function Coachnavbar() {
       <div className="lg:navbar-end hidden text-white lg:flex">
         <ul className="menu menu-horizontal px-1  text-sm ">
           <li>
-            <NavLink
-              //@ts-ignore
-
-              to="/profile"
-              className="hover:text-[#695f25]"
-            >
+            <NavLink to="/profile" className="hover:text-[#695f25]">
               {({ isActive }) => (
                 <span className={isActive ? "text-yellow-300" : ""}>
                   Profile

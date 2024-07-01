@@ -1,22 +1,29 @@
-import { useForm } from "react-hook-form";
-import Navbar from "../../components/Navbar/Navbar";
-import { useAuth } from "../../providers/AuthProvider";
 import { useEffect } from "react";
 import axios from "axios";
+import Navbar from "../../components/Navbar/Navbar";
+import { useAuth } from "../../providers/AuthProvider";
+import { useForm } from "react-hook-form";
+import SaveChangesBtn from "../../components/Buttons/SaveChangesBtn";
 
 function Profile() {
   const { user, loading } = useAuth();
-  const { register, handleSubmit, setValue } = useForm();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
     if (!loading && user) {
-      console.log(user);
-      setValue("username", user.username);
-      setValue("email", user.email);
-      setValue("weight", user.weight);
-      setValue("sexe", user.sexe);
+      // Set default values
+      setValue("username", user?.username);
+      setValue("email", user?.email);
+      setValue("weight", user?.weight);
+      setValue("sex", user?.sexe);
     }
   }, [loading, user, setValue]);
+
   const onSubmit = async (data: any) => {
     try {
       const config = {
@@ -34,12 +41,41 @@ function Profile() {
       console.error("There has been a problem updating the profile", error);
     }
   };
-  if (loading && !user) return <div>loading</div>;
+
+  if (loading && !user) return <div>Loading...</div>;
+
+  const fields = [
+    {
+      name: "username",
+      type: "text",
+      label: "Name",
+      validation: { required: true, minLength: 4 },
+    },
+    {
+      name: "email",
+      type: "email",
+      label: "Email",
+      validation: { required: true },
+    },
+    {
+      name: "weight",
+      type: "number",
+      label: "Weight (Kg)",
+      validation: { required: true, min: 0 },
+    },
+    {
+      name: "sexe",
+      type: "select",
+      label: "Sexe",
+      validation: { required: true },
+      options: ["Man", "Woman"],
+    },
+  ];
+
   return (
     <div>
-      <Navbar></Navbar>
-      {/* <div className="mt-28 ">{user?.email}</div> */}
-      <div className="mt-4 min-h-screen flex items-center justify-center ">
+      <Navbar />
+      <div className="mt-4 min-h-screen flex items-center justify-center">
         <div className="w-full max-w-2xl rounded-lg border bg-white text-gray-900 shadow-sm">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="p-6">
@@ -48,79 +84,67 @@ function Profile() {
                 Update your personal information.
               </p>
               <div className="grid grid-cols-2 gap-4">
-                <div className="grid gap-2">
-                  <label
-                    htmlFor="name"
-                    className="text-sm font-medium leading-none"
-                  >
-                    Name
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    className="flex h-10 w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    defaultValue={user.username}
-                    {...register("username")}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <label
-                    htmlFor="email"
-                    className="text-sm font-medium leading-none"
-                  >
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    className="flex h-10 w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    defaultValue={user.email}
-                    {...register("email")}
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4 mt-6">
-                <div className="grid gap-2">
-                  <label
-                    htmlFor="weight"
-                    className="text-sm font-medium leading-none"
-                  >
-                    Weight
-                  </label>
-                  <input
-                    id="weight"
-                    type="number"
-                    className="flex h-10 w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    defaultValue={user.weight}
-                    {...register("weight")}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <label
-                    htmlFor="sex"
-                    className="text-sm font-medium leading-none"
-                  >
-                    Sex
-                  </label>
-                  <select
-                    id="sexe"
-                    className="flex h-10 w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    {...register("sexe")}
-                    defaultValue={user.sexe}
-                  >
-                    <option value="Man">Male</option>
-                    <option value="Woman">Female</option>
-                  </select>
-                </div>
+                {fields.map((field: any, i) => (
+                  <div key={i} className="">
+                    <label
+                      htmlFor={field.name}
+                      className="text-sm font-medium leading-none"
+                    >
+                      {field.label}
+                    </label>
+                    {field.type === "select" ? (
+                      <select
+                        id={field.name}
+                        className="block w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-[#fbd815] focus:border-transparent appearance-none "
+                        {...register(field.name, field.validation)}
+                      >
+                        {
+                          //@ts-ignore
+                          field.options.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))
+                        }
+                      </select>
+                    ) : (
+                      <input
+                        id={field.name}
+                        type={field.type}
+                        className="mt-1 flex h-10 w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#fbd815] focus:border-transparent"
+                        {...register(field.name, field.validation)}
+                      />
+                    )}
+                    {errors[field.name] &&
+                      errors[field.name]?.type === "required" && (
+                        <p className="text-red-500 text-sm m-1">
+                          This field is required.
+                        </p>
+                      )}
+                    {errors[field.name] &&
+                      errors[field.name]?.type === "minLength" && (
+                        <p className="text-red-500 text-sm m-1">
+                          Minimum length of 4 characters.
+                        </p>
+                      )}
+                    {errors[field.name] &&
+                      errors[field.name]?.type === "min" && (
+                        <p className="text-red-500 text-sm m-1">
+                          Weight must be positive.
+                        </p>
+                      )}
+                  </div>
+                ))}{" "}
               </div>
             </div>
             <div className="p-6 flex items-center justify-end">
-              <button
+              {/* <button
                 type="submit"
                 className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 h-10 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 Save Changes
-              </button>
+              </button> */}
+              <SaveChangesBtn></SaveChangesBtn>
             </div>
           </form>
         </div>

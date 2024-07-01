@@ -37,16 +37,22 @@ function AllExercises() {
   if (loading && !exercises) return <div>Loading</div>;
   return (
     <>
-      <AddExercise></AddExercise>
-      <div className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
-        {exercises?.map((element: any) => (
-          <ExercisesCard
-            key={element?.name}
-            name={element?.name}
-            description={element?.description}
-            photos={element?.photos}
-          ></ExercisesCard>
-        ))}
+      <div className="w-full max-w-6xl mx-auto px-4 py-8 md:py-12">
+        <div className="flex items-center justify-between mb-6 md:mb-8">
+          <h1 className="text-2xl font-bold md:text-3xl">All Exercises</h1>
+          <AddExercise></AddExercise>
+        </div>
+        <div className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+          {exercises?.map((element: any) => (
+            <ExercisesCard
+              key={element?.name}
+              name={element?.name}
+              description={element?.description}
+              photos={element?.photos}
+              date=""
+            ></ExercisesCard>
+          ))}
+        </div>
       </div>
     </>
   );
