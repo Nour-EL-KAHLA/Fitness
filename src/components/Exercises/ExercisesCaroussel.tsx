@@ -7,7 +7,7 @@ interface elem {
   programs: any;
 }
 
-function ExercisesCaroussel({ programExercises, username, programs }: elem) {
+function ExercisesCaroussel({ programExercises }: elem) {
   return (
     <>
       <div className="p-4 flex items-center justify-start  carousel rounded-box md:mb-8 mx-4 mt-4">

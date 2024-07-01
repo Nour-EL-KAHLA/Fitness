@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ExercisesCard from "./ExercisesCard";
 import axios from "axios";
 import AddExercise from "./AddExercise";

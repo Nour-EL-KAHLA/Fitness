@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 
 import ExercisesCaroussel from "../../components/Exercises/ExercisesCaroussel";
 import Schedule from "../../components/Models/Schedule";
+import AddExerciseToProgram from "../../components/Models/AddExerciseToProgram";
 
 const ProgramEdit: React.FC = () => {
   //@ts-ignore
@@ -21,7 +22,7 @@ const ProgramEdit: React.FC = () => {
       imageUrl: ex.exercise.photos[0],
     };
   });
-  console.log(programs);
+
   return (
     <>
       <Navbar></Navbar>
@@ -33,30 +34,51 @@ const ProgramEdit: React.FC = () => {
           </h1>
 
           <>
-            {/* The button to open modal */}
-            <label
-              htmlFor="my_modal_6"
-              className="inline-flex items-center  btn justify-center rounded-xl bg-[#FBB915]  py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4 mx-1"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-                stroke="currentColor"
+            <div>
+              {" "}
+              <label
+                htmlFor="my_modal_6"
+                className="inline-flex items-center text-  btn justify-center rounded-xl  bg-[#FBB915]  py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
               >
-                <path d="M8 2v4"></path>
-                <path d="M16 2v4"></path>
-                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
-                <path d="M3 10h18"></path>
-              </svg>
-            </label>
-
-            <input type="checkbox" id="my_modal_6" className="modal-toggle " />
-            <Schedule programs={programs}></Schedule>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w- h-3  
+                  "
+                  viewBox="0 0 24 24"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path d="M8 2v4"></path>
+                  <path d="M16 2v4"></path>
+                  <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                  <path d="M3 10h18"></path>
+                </svg>
+              </label>
+              <input
+                type="checkbox"
+                id="my_modal_6"
+                className="modal-toggle "
+              />
+              <Schedule programs={programs}></Schedule>
+              <label
+                htmlFor="my_modal_5"
+                className="inline-flex items-center  btn justify-center rounded-xl bg-[#FBB915]  py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
+              >
+                Add Exercise
+              </label>
+              <input
+                type="checkbox"
+                id="my_modal_5"
+                className="modal-toggle "
+              />
+              <AddExerciseToProgram
+                program={user?.program}
+              ></AddExerciseToProgram>
+            </div>
+            {/* The button to open modal */}
           </>
         </div>
         {
