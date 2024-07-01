@@ -14,7 +14,7 @@ function Logoutbtn() {
   return (
     <div>
       <button onClick={logOut} className=" rounded-full w-full  ">
-        logout
+        Logout
       </button>
     </div>
   );

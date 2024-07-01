@@ -4,6 +4,7 @@ import Usernavbar from "./Usernavbar";
 import Coachnavbar from "./Coachnavbar";
 import Joinusbtn from "./joinusbtn";
 import Adminnavbar from "./Adminnavbar";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const { user } = useAuth();
@@ -13,11 +14,13 @@ function Navbar() {
       <div className=" top-0 z-10 fixed backdrop-filter w-full pt-8 backdrop-blur-md h-24 bg-[#040404d4]">
         <div className="flex justify-between items-center lg:px-24 mx-4 h-8 md:px-12 px-12 ">
           <div>
-            <img
-              className="w-28
+            <Link to="/">
+              <img
+                className="w-28
             "
-              src={gym}
-            ></img>
+                src={gym}
+              ></img>
+            </Link>
           </div>
 
           {!user ? (

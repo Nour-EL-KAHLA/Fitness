@@ -32,28 +32,6 @@ function AdminDashboard() {
   return (
     <>
       <div className="overflow-x-auto mt-28">
-        {/* <table className="table">
-          <thead>
-            <tr>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Sexe</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users &&
-              users.map((elem: any) => {
-                return (
-                  <tr className="hover:bg-slate-200">
-                    <td>{elem.username}</td>
-                    <td>{elem.email}</td>
-                    <td>{elem?.sexe}</td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table> */}
-
         <div className="text-gray-900 ">
           <div className="p-4 flex">
             <h1 className="text-3xl">Users</h1>
@@ -98,40 +76,53 @@ function AdminDashboard() {
                           />
                         </td>
                         <td className="p-3 px-5">
-                          <select
-                            value="user.role"
-                            className="bg-transparent border-b-2 border-gray-300 py-2"
-                          >
-                            {elem.roles[0].id === 1 ? (
-                              <>
-                                {" "}
-                                <option value="Admin">Admin </option>
-                                <option value="Coach">Coach</option>
-                                <option value="Member">Member</option>
-                              </>
-                            ) : elem.roles[0].id === 3 ? (
-                              <>
-                                <option value="Coach">Coach</option>
-                                <option value="Admin">Admin </option>
-
-                                <option value="Member">Member</option>
-                              </>
-                            ) : (
-                              <>
-                                <option value="Member">Member</option>
-                                <option value="Admin">Admin </option>
-                                <option value="Coach">Coach</option>
-                              </>
-                            )}
+                          <select className="bg-transparent border-b-2 border-gray-300 py-2">
+                            <>
+                              <option
+                                value="Admin"
+                                selected={elem?.roles[0].id === 1}
+                              >
+                                Admin
+                              </option>
+                              <option
+                                value="Coach"
+                                selected={elem?.roles[0].id === 3}
+                              >
+                                Coach
+                              </option>
+                              <option
+                                value="Member"
+                                selected={elem?.roles[0].id === 2}
+                              >
+                                Member
+                              </option>
+                            </>
                           </select>
                         </td>
+                       
                         <td className="p-3 px-5">
-                          {elem.program ? (
-                            <th>{elem.program.coach.username}</th>
-                          ) : (
-                            ""
-                          )}
+                          <select className="bg-transparent border-b-2 border-gray-300 py-2">
+                            {users
+                              .filter((elemo: any) => {
+                                return elemo?.roles[0].id == 3;
+                              })
+                              .map((elemi: any) => {
+                                return (
+                                  <option
+                                    value={elemi.username}
+                                    key={elemi.username}
+                                    selected={
+                                      elemi.username ===
+                                      elem?.program?.coach.username
+                                    }
+                                  >
+                                    {elemi.username}
+                                  </option>
+                                );
+                              })}
+                          </select>
                         </td>
+
                         <td className="p-3 px-5 flex justify-end">
                           <button
                             type="button"
