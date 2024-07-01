@@ -15,7 +15,7 @@ import {
   parseISO,
   startOfToday,
 } from "date-fns";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 
 import { useAuth } from "../../providers/AuthProvider";
 
@@ -76,6 +76,7 @@ function Program() {
   return (
     <>
       <Navbar></Navbar>
+
       <div className="pt-40">
         <div className="max-w-md px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
           <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">

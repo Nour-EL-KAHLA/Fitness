@@ -4,6 +4,7 @@ import Inputfield from "./Inputfield";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
+import { useState } from "react";
 function Signup() {
   const {
     register,
@@ -18,7 +19,7 @@ function Signup() {
   });
   const navigate = useNavigate();
   const { setUser } = useAuth();
-
+  const [signupError, setSignupError] = useState<string>("");
   const signUpAction = async (data: any) => {
     if (!data.email || !data.username || !data.password) {
       console.error("Missing required fields");
@@ -49,8 +50,13 @@ function Signup() {
           }
         })
         .catch((error) => {
-          console.error("Sign-up error:", error);
-          // Handle sign-up error (e.g., display an error message)
+          if (error.response && error.response.status === 409) {
+            // Handle 409 Conflict (email already exists) scenario
+            console.log("Email already exists!");
+            setSignupError(
+              "Email already exists! Please use a different email."
+            );
+          }
         });
     } catch (error) {
       console.error(
@@ -107,7 +113,9 @@ function Signup() {
               </div>
             </>
           ))}
-
+          {signupError && (
+            <p className="text-red-500 text-sm mt-1">{signupError}</p>
+          )}
           <div>
             <button
               type="submit"

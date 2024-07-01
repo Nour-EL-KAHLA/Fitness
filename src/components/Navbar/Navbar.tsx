@@ -1,4 +1,4 @@
-import gym from "../../assets/gymwhite.png";
+import gym from "../../assets/kora.png";
 import { useAuth } from "../../providers/AuthProvider";
 import Usernavbar from "./Usernavbar";
 import Coachnavbar from "./Coachnavbar";
@@ -10,10 +10,14 @@ function Navbar() {
 
   return (
     <div>
-      <div className=" top-0 z-10 fixed backdrop-filter w-full pt-8 backdrop-blur-md h-24 bg-[#040404]">
-        <div className="flex justify-between items-center lg:px-24 mx-12 h-8 md:px-12 px-12 ">
+      <div className=" top-0 z-10 fixed backdrop-filter w-full pt-8 backdrop-blur-md h-24 bg-[#040404d4]">
+        <div className="flex justify-between items-center lg:px-24 mx-4 h-8 md:px-12 px-12 ">
           <div>
-            <img className="w-16" src={gym}></img>
+            <img
+              className="w-28
+            "
+              src={gym}
+            ></img>
           </div>
 
           {!user ? (

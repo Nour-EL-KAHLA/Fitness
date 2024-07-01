@@ -2,11 +2,20 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../providers/AuthProvider";
 import { IoIosFitness } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 function CoachDashboard() {
   const { user } = useAuth();
   const [users, setUsers] = useState<any>();
   const [loading, setLoading] = useState(false);
+  interface User {
+    id: number;
+    name: string;
+    program: {
+      id: any;
+    };
+  }
+  const navigate = useNavigate();
   useEffect(() => {
     getallusers();
   }, []);
@@ -34,6 +43,10 @@ function CoachDashboard() {
       console.error("There has been a problem with getthing the users", error);
     }
   };
+  function handleEditProgram(user: User) {
+    //@ts-ignore
+    navigate(`/programEdit/${user.id}`, { state: { user } });
+  }
   if (loading && !users) return <div>Loading</div>;
   return (
     <>
@@ -97,7 +110,9 @@ function CoachDashboard() {
                             className="bg-[#FBB915] w-fit h-fit  flex flex-row 
   justify-center items-center hover:bg-[#fbd815] duration-150 ease-in-out p-3 px-4 gap-2 bg-gradient-to-r from-[#FBCD15] to-[#fbae15] text-black font-bold rounded-full transition-transform transform-gpu h hover:shadow-lg"
                           >
-                            <Link to={"/programEdit"}>Program</Link>
+                            <button onClick={() => handleEditProgram(elem)}>
+                              Edit Program
+                            </button>
                             <div className="mt-1">
                               <IoIosFitness></IoIosFitness>
                             </div>

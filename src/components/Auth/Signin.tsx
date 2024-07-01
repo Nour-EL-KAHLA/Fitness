@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { useState } from "react";
 
 function Signin() {
   const { register, handleSubmit } = useForm({
@@ -15,7 +16,7 @@ function Signin() {
   });
   const navigate = useNavigate();
   const { setUser } = useAuth();
-
+  const [signinError, setSigninError] = useState<string>("");
   const loginAction = async (data: any) => {
     try {
       await axios
@@ -35,6 +36,9 @@ function Signin() {
           navigate("/");
         });
     } catch (error) {
+      setSigninError(
+        "Wrong credentials, please verify your email and/or password"
+      );
       console.error(
         "There has been a problem with your sign-in operation:",
         error
@@ -78,7 +82,9 @@ function Signin() {
               </div>
             </>
           ))}
-
+          {signinError && (
+            <p className="text-red-500 text-sm mt-1">{signinError}</p>
+          )}
           <div>
             <button
               type="submit"

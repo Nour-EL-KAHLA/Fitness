@@ -33,7 +33,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route element={<CoachRoute />}>
               <Route path="/coaching" element={<Coaching />}></Route>
               <Route path="/exercises" element={<Exercises />}></Route>
-              <Route path="/programEdit" element={<ProgramEdit />}></Route>
+              <Route path="/programEdit/:userId" element={<ProgramEdit />} />
             </Route>
             <Route element={<AdminRoute />}>
               <Route path="/dashboard" element={<Dashboard />}></Route>
