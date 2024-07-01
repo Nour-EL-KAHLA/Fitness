@@ -39,7 +39,7 @@ function Coachnavbar() {
       </details>
 
       <div className="lg:navbar-end hidden text-white lg:flex">
-        <ul className="menu menu-horizontal px-1  text-sm ">
+        <ul className="menu menu-horizontal px-1  text-base ">
           <li>
             <NavLink to="/profile" className="hover:text-[#695f25]">
               {({ isActive }) => (
@@ -67,7 +67,7 @@ function Coachnavbar() {
               )}
             </NavLink>
           </li>
-          <li className=" ml-12  flex flex-row text-[#bf3305] hover:text-[#bf1b05]">
+          <li className=" ml-12 text-base flex flex-row text-[#bf3305] hover:text-[#bf1b05]">
             <Logoutbtn></Logoutbtn>
           </li>
         </ul>
