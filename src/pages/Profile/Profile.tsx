@@ -20,7 +20,7 @@ function Profile() {
       setValue("username", user?.username);
       setValue("email", user?.email);
       setValue("weight", user?.weight);
-      setValue("sex", user?.sexe);
+      setValue("sexe", user?.sexe);
     }
   }, [loading, user, setValue]);
 
@@ -101,7 +101,11 @@ function Profile() {
                         {
                           //@ts-ignore
                           field.options.map((option) => (
-                            <option key={option} value={option}>
+                            <option
+                              key={option}
+                              value={option}
+                              selected={option == user?.sexe}
+                            >
                               {option}
                             </option>
                           ))

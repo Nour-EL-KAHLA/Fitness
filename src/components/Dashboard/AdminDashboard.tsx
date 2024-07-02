@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 function AdminDashboard() {
   const [users, setUsers] = useState<any>();
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     getallusers();
   }, []);
@@ -28,7 +29,8 @@ function AdminDashboard() {
       console.error("There has been a problem with getthing the users", error);
     }
   };
-  if (loading && !users) return <div>Loading</div>;
+
+  if (loading && !users) return <div>Loading...</div>;
   return (
     <>
       <div className="overflow-x-auto mt-28">
@@ -77,31 +79,33 @@ function AdminDashboard() {
                         </td>
                         <td className="p-3 px-5">
                           <select className="bg-transparent border-b-2 border-gray-300 py-2">
-                            <>
-                              <option
-                                value="Admin"
-                                selected={elem?.roles[0].id === 1}
-                              >
-                                Admin
-                              </option>
-                              <option
-                                value="Coach"
-                                selected={elem?.roles[0].id === 3}
-                              >
-                                Coach
-                              </option>
-                              <option
-                                value="Member"
-                                selected={elem?.roles[0].id === 2}
-                              >
-                                Member
-                              </option>
-                            </>
+                            <option
+                              value="Admin"
+                              selected={elem?.roles[0].id === 1}
+                            >
+                              Admin
+                            </option>
+                            <option
+                              value="Coach"
+                              selected={elem?.roles[0].id === 3}
+                            >
+                              Coach
+                            </option>
+                            <option
+                              value="Member"
+                              selected={elem?.roles[0].id === 2}
+                            >
+                              Member
+                            </option>
                           </select>
                         </td>
-                       
+
                         <td className="p-3 px-5">
-                          <select className="bg-transparent border-b-2 border-gray-300 py-2">
+                          <select
+                            id="coach"
+                            className="bg-transparent border-b-2 border-gray-300 py-2"
+                          >
+                            <option>Undefined</option>
                             {users
                               .filter((elemo: any) => {
                                 return elemo?.roles[0].id == 3;
@@ -112,7 +116,7 @@ function AdminDashboard() {
                                     value={elemi.username}
                                     key={elemi.username}
                                     selected={
-                                      elemi.username ===
+                                      elemi.username ==
                                       elem?.program?.coach.username
                                     }
                                   >
@@ -130,6 +134,7 @@ function AdminDashboard() {
                           >
                             Save
                           </button>
+
                           <button
                             type="button"
                             className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"

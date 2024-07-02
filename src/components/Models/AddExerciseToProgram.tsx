@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import Inputfield from "../Auth/Inputfield";
+
 import { useEffect, useState } from "react";
-import Exercises from "../../pages/Exercises/Exercises";
+
 interface exercisetoprogram {
   program: any;
 }
@@ -55,11 +55,16 @@ function AddExerciseToProgram({ program }: exercisetoprogram) {
 
     try {
       setLoading(true);
+      let config = {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("site"),
+        },
+      };
       console.log(data.Exercise);
       await axios
         .post(
-          `http://127.0.0.1:8090/program/${program.id}/exercises/${data.Exercise}/dayOfWeek?${data.Date}`,
-
+          `http://127.0.0.1:8090/program/${program.id}/exercises/${data.Exercise}?dayOfWeek=${data.Date}`,
+          null,
           config
         )
         .then(() => {

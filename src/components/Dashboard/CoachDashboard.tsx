@@ -50,29 +50,6 @@ function CoachDashboard() {
   if (loading && !users) return <div>Loading</div>;
   return (
     <>
-      {/* <div className="overflow-x-auto mt-28">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Sexe</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users &&
-              users.map((elem: any) => {
-                return (
-                  <tr className="hover:bg-slate-200">
-                    <td>{elem.username}</td>
-                    <td>{elem.email}</td>
-                    <td>{elem?.sexe}</td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
-      </div> */}
       <div className="overflow-x-auto mt-28">
         <div className="text-gray-900 ">
           <div className="p-4 flex">
