@@ -23,3 +23,10 @@ body::-webkit-scrollbar-thumb {
   background: no-repeat;
   object-fit: cover;
 }
+#file-upload {
+  display: none;
+}
+.custom-file-upload {
+  display: inline-block;
+  cursor: pointer;
+}

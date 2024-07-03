@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ExercisesCard from "./ExercisesCard";
 import axios from "axios";
 import AddExercise from "./AddExercise";
+import WatchVideoModel from "../Models/WatchVideoModel";
 
 function AllExercises() {
   const [exercises, setExercises] = useState<any>();
@@ -34,7 +35,26 @@ function AllExercises() {
       );
     }
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalVideos, setModalVideos] = useState<string[]>([]);
+
+  const openModal = (videos: any) => {
+    setModalVideos(videos);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalVideos([]);
+    setIsModalOpen(false);
+  };
+
+  const handleDelete = (id: any) => {
+    setExercises((prevExercises: any) =>
+      prevExercises.filter((exercise: any) => exercise.id !== id)
+    );
+  };
   if (loading && !exercises) return <div>Loading</div>;
+
   return (
     <>
       <div className="w-full max-w-6xl mx-auto px-4 py-8 md:py-12">
@@ -45,14 +65,21 @@ function AllExercises() {
         <div className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
           {exercises?.map((element: any) => (
             <ExercisesCard
+              id={element?.id}
               key={element?.name}
               name={element?.name}
               description={element?.description}
               photos={element?.photos}
+              videos={element?.videos}
               date=""
+              openModal={openModal}
+              onDelete={handleDelete}
             ></ExercisesCard>
           ))}
         </div>
+        {isModalOpen && (
+          <WatchVideoModel videos={modalVideos} onClose={closeModal} />
+        )}
       </div>
     </>
   );

@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { BsImage } from "react-icons/bs";
 //@ts-ignore
-function CloudinaryUploadWidget({ setProduct }) {
+function CloudinaryUploadWidget() {
   useEffect(() => {
-    const cloudName = "dsqt757nu";
-    const uploadPreset = "c1ypbzwy";
+    var Image = "";
+    const cloudName = "dduuvbxct";
+    const uploadPreset = "ml_default";
     //@ts-ignore
     const myWidget = window.cloudinary.createUploadWidget(
       {
@@ -16,10 +17,7 @@ function CloudinaryUploadWidget({ setProduct }) {
       (error: any, result: any) => {
         if (!error && result && result.event === "success") {
           const { secure_url } = result.info;
-          setProduct((oldValue: any) => ({
-            ...oldValue,
-            ...{ images: [...oldValue.images, secure_url] },
-          }));
+          Image = secure_url;
         }
       }
     );
@@ -36,9 +34,10 @@ function CloudinaryUploadWidget({ setProduct }) {
         uploadButton.removeEventListener("click", function () {
           myWidget.open();
         });
+        Image;
       }
     };
-  }, [setProduct]);
+  }, []);
 
   return (
     <button

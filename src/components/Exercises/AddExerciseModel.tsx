@@ -19,9 +19,10 @@ function AddExerciseModel() {
     defaultValues: {
       name: "",
       description: "",
+      images: [""],
     },
   });
-  const navigate = useNavigate();
+
   const AddExerciseAction = async (data: any) => {
     if (!data.name || !data.description) {
       console.error("Missing required fields");
@@ -34,6 +35,7 @@ function AddExerciseModel() {
         .post("http://127.0.0.1:8090/exercise/addexercise", data, config)
         .then(() => {
           console.log("done");
+          window.location.reload();
         })
         .finally(() => setLoading(false))
         .catch((error) => {
@@ -91,6 +93,7 @@ function AddExerciseModel() {
                 </div>
               </>
             ))}
+
             <div className="modal-action">
               <label htmlFor="my_modal_7">
                 <button

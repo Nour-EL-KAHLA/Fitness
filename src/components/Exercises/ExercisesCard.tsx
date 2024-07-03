@@ -1,10 +1,28 @@
+import { useState } from "react";
+import WatchVideoModel from "../Models/WatchVideoModel";
+import ExerciseManagement from "./ExerciseManagement";
+
 interface elem {
+  id: any;
   name: string;
   description: string;
   photos: string[];
   date: string;
+  videos: string[];
+  openModal: (videos: string[]) => void;
+  onDelete: (id: any) => void;
 }
-function ExercisesCard({ name, description, photos, date }: elem) {
+
+function ExercisesCard({
+  id,
+  name,
+  description,
+  photos,
+  date,
+  videos,
+  openModal,
+  onDelete,
+}: elem) {
   return (
     <div className="w-72  bg-white shadow-lg ring-2 ring-gray-300 ring-offset-2 ring-offset-white rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
       <div className="flex flex-col space-y-1.5 p-6">
@@ -35,8 +53,11 @@ function ExercisesCard({ name, description, photos, date }: elem) {
         )}
         <p className="text-muted-foreground">{description}</p>
       </div>
-      <div className="flex items-center p-6">
-        <button className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+      <div className="flex items-center justify-between py-6 px-4 ">
+        <button
+          onClick={() => openModal(videos)} // Use openModal to open the modal
+          className="btn justify-center rounded-xl bg-[#151515] hover:bg-[#000000] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-4 h-4 mr-2"
@@ -51,6 +72,7 @@ function ExercisesCard({ name, description, photos, date }: elem) {
           </svg>
           Watch Video
         </button>
+        <ExerciseManagement id={id} onDelete={onDelete}></ExerciseManagement>
       </div>
     </div>
   );
