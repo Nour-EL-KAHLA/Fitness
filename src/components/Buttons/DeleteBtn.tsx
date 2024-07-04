@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { MdDelete } from "react-icons/md";
+import { LuTrash2 } from "react-icons/lu";
 
 interface exerciseId {
   id: any;
@@ -63,7 +63,7 @@ function DeleteBtn({ id, onDelete, program, programexercise }: exerciseId) {
         disabled={loading}
         className="text-3xl text-red-600 hover:text-red-700 w-fit h-fit p-1 gap gap-2 rounded-md flex flex-row justify-center items-center transition duration-150 ease-in-out"
       >
-        <MdDelete />
+        <LuTrash2 />
       </button>
     </>
   );

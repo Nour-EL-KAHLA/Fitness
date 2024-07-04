@@ -76,7 +76,7 @@ function Profile() {
     <div>
       <Navbar />
       <div className="mt-4 min-h-screen flex items-center justify-center">
-        <div className="w-full max-w-2xl rounded-lg border bg-white text-gray-900 shadow-sm">
+        <div className="shadow-lg ring-0 ring-gray-400  w-full max-w-2xl rounded-lg border  bg-white text-gray-900 ">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="p-6">
               <h3 className="text-2xl font-semibold mb-3">User Profile</h3>

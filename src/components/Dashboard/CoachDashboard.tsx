@@ -50,13 +50,13 @@ function CoachDashboard() {
   if (loading && !users) return <div>Loading</div>;
   return (
     <>
-      <div className="overflow-x-auto mt-28">
-        <div className="text-gray-900 ">
-          <div className="p-4 flex">
+      <div className="overflow-x-auto mt-28 mx-16  px-0">
+        <div className="text-gray-900  ">
+          <div className="py-4 flex">
             <h1 className="text-3xl">Members</h1>
           </div>
-          <div className="px-3 py-4 flex justify-center">
-            <table className="w-full text-md bg-white shadow-md rounded mb-4">
+          <div className="px-0 py-4 flex justify-center ">
+            <table className="w-full text-md bg-white  rounded mb-4 shadow-lg ring-0 ring-gray-400 ">
               <thead>
                 <tr className="border-b">
                   <th className="text-left p-3 px-5">Name</th>
@@ -85,7 +85,7 @@ function CoachDashboard() {
                         <td className="p-3 px-5 flex justify-end ">
                           <div
                             className="bg-[#FBB915] w-fit h-fit  flex flex-row 
-  justify-center items-center hover:bg-[#fbd815] duration-150 ease-in-out p-3 px-4 gap-2 bg-gradient-to-r from-[#FBCD15] to-[#fbae15] text-black font-bold rounded-full transition-transform transform-gpu h hover:shadow-lg"
+  justify-center items-center hover:bg-[#fbd815] rounded-md duration-150 ease-in-out p-3 px-4 gap-2 bg-gradient-to-r from-[#FBCD15] to-[#fbae15] text-black font-bold transition-transform transform-gpu h hover:shadow-lg"
                           >
                             <button onClick={() => handleEditProgram(elem)}>
                               Edit Program

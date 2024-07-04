@@ -28,19 +28,19 @@ function ExercisesCard({
   onDelete,
 }: elem) {
   return (
-    <div className="w-72  bg-white shadow-lg ring-2 ring-gray-300 ring-offset-2 ring-offset-white rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-      <div className="flex flex-col space-y-1.5 p-6">
+    <div className="w-72  bg-white shadow-lg ring-0 ring-gray-400 ring-offset-2 ring-offset-white rounded-md duration-500 hover:scale-105 hover:shadow-xl">
+      <div className="flex flex-col space-y-1.5 px-4 py-2 pt-4">
         <h3 className="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
           {name}
         </h3>
         <p className="text-sm text-muted-foreground">{date}</p>
       </div>
-      <div className="p-6">
+      <div className="py-4 px-4">
         {photos ? (
           <img
             src={photos[0]}
             alt={name}
-            className="rounded-md mb-4 object-cover w-full"
+            className="rounded-md mb-2 object-cover w-full"
             style={{ aspectRatio: "400 / 300" }}
             width="400"
             height="300"
@@ -57,7 +57,7 @@ function ExercisesCard({
         )}
         <p className="text-muted-foreground">{description}</p>
       </div>
-      <div className="flex items-center justify-between py-6 px-4 ">
+      <div className="flex items-center justify-between py-4 pt-6 px-4 ">
         <button
           onClick={() => openModal(videos)} // Use openModal to open the modal
           className="btn justify-center rounded-xl bg-[#151515] hover:bg-[#000000] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
@@ -76,6 +76,7 @@ function ExercisesCard({
           </svg>
           Watch Video
         </button>
+
         <ExerciseManagement
           id={id}
           program={program}

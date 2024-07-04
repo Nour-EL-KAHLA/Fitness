@@ -45,7 +45,7 @@ function DoneBtn({ id, program, onDelete, programexercise }: exerciseId) {
       type="button"
       onClick={DeleteExerciseAction}
       disabled={loading}
-      className="btn justify-center rounded-xl bg-[#04f163] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#14f104] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
+      className="btn justify-center rounded-md bg-[#04f163] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#14f104] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
     >
       <MdOutlineDoneOutline /> Done
     </button>
