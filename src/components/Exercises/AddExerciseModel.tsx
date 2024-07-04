@@ -14,6 +14,7 @@ function AddExerciseModel({ onAddExercise }: AddExerciseModelProps) {
     },
   };
   const [loading, setLoading] = useState(false);
+
   const [urlImage, setUrlImage] = useState("");
   const {
     register,
@@ -24,6 +25,7 @@ function AddExerciseModel({ onAddExercise }: AddExerciseModelProps) {
       name: "",
       description: "",
       photos: [""],
+      video: "",
     },
   });
 
@@ -32,16 +34,19 @@ function AddExerciseModel({ onAddExercise }: AddExerciseModelProps) {
       console.error("Missing required fields");
       return;
     }
-    data = { ...data, photos: [urlImage] };
+
+    const datas = { ...data, photos: [urlImage], videos: [data.video] };
+    console.log(datas);
     try {
       setLoading(true);
       const response = await axios
-        .post("http://127.0.0.1:8090/exercise/addexercise", data, config)
+        .post("http://127.0.0.1:8090/exercise/addexercise", datas, config)
         .finally(() => setLoading(false));
       const newExercise = response.data;
       onAddExercise(newExercise);
       data.name = "";
       data.description = "";
+      data.videos = [""];
       console.log("done");
     } catch (error) {
       console.error(
@@ -56,7 +61,7 @@ function AddExerciseModel({ onAddExercise }: AddExerciseModelProps) {
     });
   };
 
-  const fields: string[] = ["name", "description"];
+  const fields: string[] = ["name", "description", "video"];
   if (loading) return <div>Loading</div>;
   return (
     <div className="modal bg-white" role="dialog">

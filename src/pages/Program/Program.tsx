@@ -31,8 +31,8 @@ function Program() {
   return (
     <>
       <Navbar></Navbar>
-      <div className="pt-16 bg-svg-background "></div>
-      <div className="w-full  max-w-6xl mx-auto px-4 py-8 md:py-12">
+      <div className="pt-16 "></div>
+      <div className="py-8 lg:mx-28  mx-8 md:py-12">
         <div className="flex items-center justify-between mb-6 md:mb-8">
           <h1 className="text-2xl font-bold md:text-3xl">My Program </h1>
 
@@ -40,7 +40,7 @@ function Program() {
             {/* The button to open modal */}
             <label
               htmlFor="my_modal_6"
-              className="inline-flex items-center  btn justify-center rounded-xl bg-[#FBB915]  py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
+              className="inline-flex  items-center  btn justify-center rounded-xl bg-[#FBB915]  py-1.5 text-sm font-semibold leading-6 text-white  hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e] shadow-lg ring-0 ring-[#efd74e]"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

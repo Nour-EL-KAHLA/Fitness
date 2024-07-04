@@ -60,12 +60,12 @@ function AllExercises() {
 
   return (
     <>
-      <div className="w-full max-w-6xl mx-auto px-4 py-8 md:py-12">
+      <div className="w-full mx-auto  py-8 md:py-12">
         <div className="flex items-center justify-between mb-6 md:mb-8">
           <h1 className="text-2xl font-bold md:text-3xl">All Exercises</h1>
           <AddExercise onAddExercise={handleAddExercise}></AddExercise>
         </div>
-        <div className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+        <div className=" mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
           {exercises?.map((element: any) => (
             <ExercisesCard
               program={null}

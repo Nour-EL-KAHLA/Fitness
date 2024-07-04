@@ -1,4 +1,5 @@
 import axios from "axios";
+import { format, isToday, parseISO } from "date-fns";
 import React, { useState } from "react";
 import { MdOutlineDoneOutline } from "react-icons/md";
 interface exerciseId {
@@ -6,8 +7,9 @@ interface exerciseId {
   onDelete: (id: any) => void;
   program: any;
   programexercise: any;
+  date: string;
 }
-function DoneBtn({ id, program, onDelete, programexercise }: exerciseId) {
+function DoneBtn({ id, program, onDelete, programexercise, date }: exerciseId) {
   let config = {
     headers: {
       Authorization: "Bearer " + localStorage.getItem("site"),
@@ -39,16 +41,24 @@ function DoneBtn({ id, program, onDelete, programexercise }: exerciseId) {
       );
     }
   };
-
+  const todayDate = format(new Date(), "yyyy-MM-dd");
+  console.log(todayDate, programexercise);
+  if (loading || date !== todayDate) {
+    return <></>;
+  }
   return (
-    <button
-      type="button"
-      onClick={DeleteExerciseAction}
-      disabled={loading}
-      className="btn justify-center rounded-md bg-[#04f163] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#14f104] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
-    >
-      <MdOutlineDoneOutline /> Done
-    </button>
+    <>
+      <button
+        type="button"
+        onClick={DeleteExerciseAction}
+        className={
+          "bg-[#04f163] text-white hover:bg-[#14f104] focus-visible:outline-[#efd74e] btn justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+        }
+        disabled={loading || date !== todayDate}
+      >
+        <MdOutlineDoneOutline /> Done
+      </button>
+    </>
   );
 }
 

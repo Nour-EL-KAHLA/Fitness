@@ -50,7 +50,7 @@ function CoachDashboard() {
   if (loading && !users) return <div>Loading</div>;
   return (
     <>
-      <div className="overflow-x-auto mt-28 mx-16  px-0">
+      <div className="overflow-x-auto mt-28  px-0">
         <div className="text-gray-900  ">
           <div className="py-4 flex">
             <h1 className="text-3xl">Members</h1>

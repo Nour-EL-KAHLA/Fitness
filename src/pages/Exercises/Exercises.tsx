@@ -2,7 +2,7 @@ import AllExercises from "../../components/Exercises/AllExercises";
 
 function Exercises() {
   return (
-    <div className="mt-28">
+    <div className="mt-28 lg:mx-24 mx-8">
       <div className="flex flex-wrap justify-center mt-10">
         {" "}
         <AllExercises></AllExercises>

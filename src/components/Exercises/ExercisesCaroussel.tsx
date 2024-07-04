@@ -31,7 +31,7 @@ function ExercisesCaroussel({ programExercises, program }: elem) {
 
   return (
     <>
-      <div className="p-4 flex items-center justify-start  carousel rounded-box md:mb-8 mx-4 mt-4">
+      <div className="py-4 flex items-center justify-start px-0 mx-0 carousel rounded-box md:mb-8 mt-4">
         {programexercises
           ?.sort((a: any, b: any) => {
             return compareAsc(a.dayOfWeek, b.dayOfWeek);
@@ -48,7 +48,7 @@ function ExercisesCaroussel({ programExercises, program }: elem) {
                   description={element?.exercise.description}
                   photos={element?.exercise.photos}
                   date={element?.dayOfWeek}
-                  videos={element?.videos}
+                  videos={element?.exercise.videos}
                   openModal={openModal}
                   onDelete={handleDelete}
                 ></ExercisesCard>

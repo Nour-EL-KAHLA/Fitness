@@ -12,7 +12,7 @@ function Navbar() {
   return (
     <div>
       <div className=" top-0 z-10 fixed backdrop-filter w-full pt-8 backdrop-blur-md h-24 bg-[#040404e4]">
-        <div className="flex justify-between items-center lg:px-20 mx-8 h-8   ">
+        <div className="flex justify-between items-center lg:px-16 mx-8 h-8   ">
           <div>
             <Link to="/">
               <img

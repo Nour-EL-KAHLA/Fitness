@@ -97,7 +97,7 @@ function AdminDashboard() {
   if (loading && !users.length) return <div>Loading...</div>;
 
   return (
-    <div className="overflow-x-auto mt-28">
+    <div className="overflow-x-auto mt-28 lg:mx-24 mx-8">
       <div className="text-gray-900 ">
         <div className="p-4 flex">
           <h1 className="text-3xl">Users</h1>

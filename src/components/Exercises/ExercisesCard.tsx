@@ -82,6 +82,7 @@ function ExercisesCard({
           program={program}
           programexercise={programexercise}
           onDelete={onDelete}
+          date={date}
         ></ExerciseManagement>
       </div>
     </div>

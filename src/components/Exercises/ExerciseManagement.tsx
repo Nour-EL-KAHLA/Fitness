@@ -6,12 +6,14 @@ interface exerciseId {
   onDelete: (id: any) => void;
   program: any;
   programexercise: any;
+  date: string;
 }
 function ExerciseManagement({
   id,
   onDelete,
   program,
   programexercise,
+  date,
 }: exerciseId) {
   const { user, loading } = useAuth();
   if (loading && !user) return <div>loading..</div>;
@@ -30,6 +32,7 @@ function ExerciseManagement({
       program={program}
       programexercise={programexercise}
       onDelete={onDelete}
+      date={date}
     ></DoneBtn>
   );
 }

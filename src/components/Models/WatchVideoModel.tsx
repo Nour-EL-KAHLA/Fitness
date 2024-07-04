@@ -17,23 +17,7 @@ function WatchVideoModel({ videos, onClose }: element) {
             </button>
           </div>
           <div className="mt-4">
-            {videos ? (
-              // videos.map((video, index) => (
-              //   <div key={index} className="mb-4">
-              //     <video controls className="w-full">
-              //       <source src={video} type="video/mp4" />
-              //       Your browser does not support the video tag.
-              //     </video>
-              //   </div>
-              // ))
-
-              <div>yesssi</div>
-            ) : (
-              <ReactPlayer
-                url="https://www.youtube.com/watch?v=WoOQmzyW4YI&list=RDNcc9IPer9b4&index=28"
-                controls
-              />
-            )}
+            {videos && <ReactPlayer url={videos[0]} controls />}
           </div>
         </div>
       </div>
