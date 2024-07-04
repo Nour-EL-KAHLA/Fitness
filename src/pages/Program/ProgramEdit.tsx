@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 
@@ -11,7 +11,20 @@ const ProgramEdit: React.FC = () => {
   const location = useLocation<{ state: { user: any } }>();
   const { user } = location.state;
   console.log(user);
+  const [programExercises, setProgramExercises] = useState(
+    user.program.programExercises
+  );
 
+  useEffect(() => {
+    setProgramExercises(user.program.programExercises);
+  }, [user]);
+
+  const handleAddExercise = (newExercise: any) => {
+    setProgramExercises((prevExercises: any) => [
+      ...prevExercises,
+      newExercise,
+    ]);
+  };
   const programs = user.program.programExercises.map((ex: any) => {
     return {
       id: ex.id,
@@ -86,10 +99,9 @@ const ProgramEdit: React.FC = () => {
             programExercises={user.program.programExercises}
             username={user.username}
             programs={programs}
+            program={user?.program.id}
           ></ExercisesCaroussel>
         }
-
-        
       </div>
     </>
   );

@@ -6,12 +6,14 @@ interface elem {
   programExercises: any;
   username: string;
   programs: any;
+  program: any;
 }
 
-function ExercisesCaroussel({ programExercises }: elem) {
+function ExercisesCaroussel({ programExercises, program }: elem) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalVideos, setModalVideos] = useState<string[]>([]);
-
+  const [programexercises, setprogramexercises] =
+    useState<any>(programExercises);
   const openModal = (videos: string[]) => {
     setModalVideos(videos);
     setIsModalOpen(true);
@@ -21,11 +23,16 @@ function ExercisesCaroussel({ programExercises }: elem) {
     setModalVideos([]);
     setIsModalOpen(false);
   };
+  const handleDelete = (id: any) => {
+    setprogramexercises((prevExercises: any) =>
+      prevExercises.filter((program: any) => program.id !== id)
+    );
+  };
 
   return (
     <>
       <div className="p-4 flex items-center justify-start  carousel rounded-box md:mb-8 mx-4 mt-4">
-        {programExercises
+        {programexercises
           ?.sort((a: any, b: any) => {
             return compareAsc(a.dayOfWeek, b.dayOfWeek);
           })
@@ -33,15 +40,17 @@ function ExercisesCaroussel({ programExercises }: elem) {
             <>
               <div className="carousel-item gap gap-4 m-4 mx-4 ">
                 <ExercisesCard
-                  id={element?.id}
-                  key={element?.exercise.name}
+                  program={program}
+                  programexercise={element?.id}
+                  id={element?.exercise.id}
+                  key={element?.id}
                   name={element?.exercise.name}
                   description={element?.exercise.description}
                   photos={element?.exercise.photos}
                   date={element?.dayOfWeek}
                   videos={element?.videos}
                   openModal={openModal}
-                  onDelete={(id: any) => null}
+                  onDelete={handleDelete}
                 ></ExercisesCard>
               </div>
             </>

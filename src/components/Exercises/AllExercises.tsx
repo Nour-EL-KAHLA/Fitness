@@ -8,9 +8,9 @@ function AllExercises() {
   const [exercises, setExercises] = useState<any>();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    gettoken();
+    fetchExercises();
   }, []);
-  const gettoken = async () => {
+  const fetchExercises = async () => {
     let config = {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("site"),
@@ -53,6 +53,9 @@ function AllExercises() {
       prevExercises.filter((exercise: any) => exercise.id !== id)
     );
   };
+  const handleAddExercise = (newExercise: any) => {
+    setExercises((prevExercises: any) => [...prevExercises, newExercise]);
+  };
   if (loading && !exercises) return <div>Loading</div>;
 
   return (
@@ -60,11 +63,13 @@ function AllExercises() {
       <div className="w-full max-w-6xl mx-auto px-4 py-8 md:py-12">
         <div className="flex items-center justify-between mb-6 md:mb-8">
           <h1 className="text-2xl font-bold md:text-3xl">All Exercises</h1>
-          <AddExercise></AddExercise>
+          <AddExercise onAddExercise={handleAddExercise}></AddExercise>
         </div>
         <div className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
           {exercises?.map((element: any) => (
             <ExercisesCard
+              program={null}
+              programexercise={null}
               id={element?.id}
               key={element?.name}
               name={element?.name}

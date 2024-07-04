@@ -31,7 +31,7 @@ function Program() {
   return (
     <>
       <Navbar></Navbar>
-      <div className="pt-16"></div>
+      <div className="pt-16 bg-svg-background "></div>
       <div className="w-full  max-w-6xl mx-auto px-4 py-8 md:py-12">
         <div className="flex items-center justify-between mb-6 md:mb-8">
           <h1 className="text-2xl font-bold md:text-3xl">My Program </h1>
@@ -68,6 +68,7 @@ function Program() {
             programExercises={user.program.programExercises}
             username={user.username}
             programs={programs}
+            program={user?.program.id}
           ></ExercisesCaroussel>
         }
       </div>

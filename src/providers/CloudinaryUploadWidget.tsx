@@ -1,11 +1,10 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { BsImage } from "react-icons/bs";
-//@ts-ignore
-function CloudinaryUploadWidget() {
+
+function CloudinaryUploadWidget({ setUrlImage }: { setUrlImage: any }) {
   useEffect(() => {
-    var Image = "";
-    const cloudName = "dduuvbxct";
-    const uploadPreset = "ml_default";
+    const cloudName = "dsqt757nu";
+    const uploadPreset = "c1ypbzwy";
     //@ts-ignore
     const myWidget = window.cloudinary.createUploadWidget(
       {
@@ -17,7 +16,11 @@ function CloudinaryUploadWidget() {
       (error: any, result: any) => {
         if (!error && result && result.event === "success") {
           const { secure_url } = result.info;
-          Image = secure_url;
+          setUrlImage(secure_url);
+          // setProduct((oldValue) => ({
+          //   ...oldValue,
+          //   ...{ images: [...oldValue.images, secure_url] },
+          // }));
         }
       }
     );
@@ -34,7 +37,6 @@ function CloudinaryUploadWidget() {
         uploadButton.removeEventListener("click", function () {
           myWidget.open();
         });
-        Image;
       }
     };
   }, []);
@@ -42,11 +44,9 @@ function CloudinaryUploadWidget() {
   return (
     <button
       id="upload_widget"
-      className="w-full md:w-[300px] h-96 border cursor-pointer bg-transparent rounded-2xl  items-center text-2xl text-neutral-600 flex justify-center gap-3"
+      className="w-full  h-32 border cursor-pointer bg-transparent rounded-2xl  items-center text-2xl text-neutral-600 flex justify-center gap-3"
     >
-      <div className="w-12 h-12 text-neutral-900">
-        <BsImage /> Upload
-      </div>
+      <BsImage /> Image
     </button>
   );
 }

@@ -1,7 +1,11 @@
 import { IoIosAddCircle } from "react-icons/io";
 import AddExerciseModel from "./AddExerciseModel";
 
-function AddExercise() {
+function AddExercise({
+  onAddExercise,
+}: {
+  onAddExercise: (newExercise: any) => void;
+}) {
   return (
     <>
       {/* The button to open modal */}
@@ -13,7 +17,7 @@ function AddExercise() {
       </label>
 
       <input type="checkbox" id="my_modal_7" className="modal-toggle " />
-      <AddExerciseModel></AddExerciseModel>
+      <AddExerciseModel onAddExercise={onAddExercise}></AddExerciseModel>
     </>
   );
 }

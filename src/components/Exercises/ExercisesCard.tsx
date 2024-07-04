@@ -3,6 +3,8 @@ import WatchVideoModel from "../Models/WatchVideoModel";
 import ExerciseManagement from "./ExerciseManagement";
 
 interface elem {
+  program: any;
+  programexercise: any;
   id: any;
   name: string;
   description: string;
@@ -15,6 +17,8 @@ interface elem {
 
 function ExercisesCard({
   id,
+  program,
+  programexercise,
   name,
   description,
   photos,
@@ -56,7 +60,7 @@ function ExercisesCard({
       <div className="flex items-center justify-between py-6 px-4 ">
         <button
           onClick={() => openModal(videos)} // Use openModal to open the modal
-          className="btn justify-center rounded-xl bg-[#151515] hover:bg-[#000000] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
+          className="btn justify-center rounded-xl bg-[#151515] hover:bg-[#000000] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +76,12 @@ function ExercisesCard({
           </svg>
           Watch Video
         </button>
-        <ExerciseManagement id={id} onDelete={onDelete}></ExerciseManagement>
+        <ExerciseManagement
+          id={id}
+          program={program}
+          programexercise={programexercise}
+          onDelete={onDelete}
+        ></ExerciseManagement>
       </div>
     </div>
   );

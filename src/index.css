@@ -30,3 +30,9 @@ body::-webkit-scrollbar-thumb {
   display: inline-block;
   cursor: pointer;
 }
+.bg-svg-background {
+  background-image: url("/src/assets/Background/WhiteWithYellowLinedbg.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

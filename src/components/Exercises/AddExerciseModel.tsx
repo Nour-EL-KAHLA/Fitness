@@ -3,14 +3,18 @@ import { useForm } from "react-hook-form";
 import Inputfield from "../Auth/Inputfield";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-
-function AddExerciseModel() {
+import CloudinaryUploadWidget from "../../providers/CloudinaryUploadWidget";
+interface AddExerciseModelProps {
+  onAddExercise: (newExercise: any) => void;
+}
+function AddExerciseModel({ onAddExercise }: AddExerciseModelProps) {
   let config = {
     headers: {
       Authorization: "Bearer " + localStorage.getItem("site"),
     },
   };
   const [loading, setLoading] = useState(false);
+  const [urlImage, setUrlImage] = useState("");
   const {
     register,
     handleSubmit,
@@ -19,7 +23,7 @@ function AddExerciseModel() {
     defaultValues: {
       name: "",
       description: "",
-      images: [""],
+      photos: [""],
     },
   });
 
@@ -28,19 +32,17 @@ function AddExerciseModel() {
       console.error("Missing required fields");
       return;
     }
-
+    data = { ...data, photos: [urlImage] };
     try {
       setLoading(true);
-      await axios
+      const response = await axios
         .post("http://127.0.0.1:8090/exercise/addexercise", data, config)
-        .then(() => {
-          console.log("done");
-          window.location.reload();
-        })
-        .finally(() => setLoading(false))
-        .catch((error) => {
-          console.error("Adding error:", error);
-        });
+        .finally(() => setLoading(false));
+      const newExercise = response.data;
+      onAddExercise(newExercise);
+      data.name = "";
+      data.description = "";
+      console.log("done");
     } catch (error) {
       console.error(
         "There has been a problem with your add exercise operation:",
@@ -49,7 +51,9 @@ function AddExerciseModel() {
     }
   };
   const onsubmit = (data: any) => {
-    AddExerciseAction(data);
+    AddExerciseAction(data).then(() => {
+      setUrlImage("");
+    });
   };
 
   const fields: string[] = ["name", "description"];
@@ -86,13 +90,18 @@ function AddExerciseModel() {
                     {errors[Element] &&
                       errors[Element]?.type === "minLength" && (
                         <p className="text-red-500 text-sm mt-1">
-                          Minimum length of 2 characters.
+                          Minimum length of 4 characters.
                         </p>
                       )}
                   </div>
                 </div>
               </>
             ))}
+            {urlImage ? (
+              <img src={urlImage} />
+            ) : (
+              <CloudinaryUploadWidget setUrlImage={setUrlImage} />
+            )}
 
             <div className="modal-action">
               <label htmlFor="my_modal_7">
