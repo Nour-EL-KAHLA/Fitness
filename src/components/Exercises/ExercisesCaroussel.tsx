@@ -8,9 +8,14 @@ interface elem {
   username: string;
   programs: any;
   program: any;
+ 
 }
 
-function ExercisesCaroussel({ programExercises, program }: elem) {
+function ExercisesCaroussel({
+  programExercises,
+  program,
+
+}: elem) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalVideos, setModalVideos] = useState<string[]>([]);
   const [programexercises, setprogramexercises] =

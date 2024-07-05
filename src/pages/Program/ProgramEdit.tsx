@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import ExercisesCaroussel from "../../components/Exercises/ExercisesCaroussel";
 import Schedule from "../../components/Models/Schedule";
 import AddExerciseToProgram from "../../components/Models/AddExerciseToProgram";
+import { useAuth } from "../../providers/AuthProvider";
 
 const ProgramEdit: React.FC = () => {
   //@ts-ignore
@@ -88,6 +89,7 @@ const ProgramEdit: React.FC = () => {
                 className="modal-toggle "
               />
               <AddExerciseToProgram
+                onAddExercise={handleAddExercise}
                 program={user?.program}
               ></AddExerciseToProgram>
             </div>

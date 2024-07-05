@@ -42,8 +42,6 @@ function Profile() {
     }
   };
 
-  if (loading && !user) return <div>Loading...</div>;
-
   const fields = [
     {
       name: "username",
@@ -71,6 +69,7 @@ function Profile() {
       options: ["Man", "Woman"],
     },
   ];
+  if (loading && !user) return <div>Loading...</div>;
 
   return (
     <div>

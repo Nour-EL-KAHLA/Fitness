@@ -85,10 +85,18 @@ function CoachDashboard() {
                         </td>
 
                         <td className="p-3 px-5">
-                          <div className="bg-transparent">{elem?.sexe}</div>
+                          {elem?.sexe ? (
+                            <div className="bg-transparent">{elem?.sexe}</div>
+                          ) : (
+                            <div>N/A</div>
+                          )}
                         </td>
                         <td className="p-3 px-5">
-                          <div className="bg-transparent">{elem?.weight}</div>
+                          {elem?.weight ? (
+                            <div className="bg-transparent">{elem?.weight}</div>
+                          ) : (
+                            <div>N/A</div>
+                          )}
                         </td>
                         <Fade className="p-3 px-5 flex justify-end ">
                           <div

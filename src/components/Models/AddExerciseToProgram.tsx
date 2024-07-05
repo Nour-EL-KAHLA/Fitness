@@ -5,9 +5,12 @@ import { useEffect, useState } from "react";
 
 interface exercisetoprogram {
   program: any;
+  onAddExercise: (newExercise: any) => void;
 }
-function AddExerciseToProgram({ program }: exercisetoprogram) {
+function AddExerciseToProgram({ program, onAddExercise }: exercisetoprogram) {
   const [exercises, setExercises] = useState<any>();
+  const [newProgramExercise, setNewProgramExercise] = useState<any>();
+
   let config = {
     headers: {
       Authorization: "Bearer " + localStorage.getItem("site"),
@@ -68,7 +71,9 @@ function AddExerciseToProgram({ program }: exercisetoprogram) {
           config
         )
         .then(() => {
-          console.log("done");
+          setNewProgramExercise(data);
+          onAddExercise(data);
+          console.log(data);
         })
         .finally(() => setLoading(false))
         .catch((error) => {
@@ -85,7 +90,7 @@ function AddExerciseToProgram({ program }: exercisetoprogram) {
     AddExerciseAction(data);
   };
 
-  if (loading) return <div>Loading</div>;
+  if (loading) return <div>Loading..</div>;
   return (
     <div className="modal bg-white" role="dialog">
       <div className="modal-box bg-white">

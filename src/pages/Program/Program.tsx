@@ -1,5 +1,5 @@
 import Navbar from "../../components/Navbar/Navbar";
-
+import { FaRegSadTear } from "react-icons/fa";
 import { useAuth } from "../../providers/AuthProvider";
 import ExercisesCaroussel from "../../components/Exercises/ExercisesCaroussel";
 import Schedule from "../../components/Models/Schedule";
@@ -12,10 +12,16 @@ function Program() {
 
   if (!user.program)
     return (
-      <div className="flex justify-center align-middle text-center">
+      <div className="flex justify-center h-80 mt-28 align-middle items-center text-xl text-center flex-col">
         {" "}
-        You are not assigned to a coach yet, please wait until we match you with
-        one of the best coaches
+        <div>
+          {" "}
+          You are not assigned to a coach yet, please wait until we match you
+          with one of the best coaches
+        </div>
+        <div className="text-[#FBB915] mt-12 text-4xl">
+          <FaRegSadTear />
+        </div>
       </div>
     );
   const programs = user.program.programExercises.map((ex: any) => {
