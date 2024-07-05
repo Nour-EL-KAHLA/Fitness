@@ -1,6 +1,7 @@
 import { useState } from "react";
 import WatchVideoModel from "../Models/WatchVideoModel";
 import ExerciseManagement from "./ExerciseManagement";
+import { Bounce } from "react-awesome-reveal";
 
 interface elem {
   program: any;
@@ -28,14 +29,17 @@ function ExercisesCard({
   onDelete,
 }: elem) {
   return (
-    <div className="w-72  bg-white shadow-lg ring-0 ring-gray-400 ring-offset-2 ring-offset-white rounded-md duration-500 hover:scale-105 hover:shadow-xl">
-      <div className="flex flex-col space-y-1.5 px-4 py-2 pt-4">
-        <h3 className="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">
+    <div className="w-72 bg-svg-backgrounda shadow-lg h-[28rem] ring-0 ring-gray-300 ring-offset-2 ring-offset-white rounded-lg duration-500 hover:scale-105 hover:shadow-xl">
+      <div
+        className="flex  flex-col space-y-1.5 px-4 py-2 pt-4
+      "
+      >
+        <h3 className="whitespace-nowrap text-xl font-semibold text-nowrap leading-none tracking-tight">
           {name}
         </h3>
         <p className="text-sm text-muted-foreground">{date}</p>
       </div>
-      <div className="py-4 px-4">
+      <div className="moving-borderpy-4 px-4">
         {photos ? (
           <img
             src={photos[0]}
@@ -55,35 +59,38 @@ function ExercisesCard({
             height="300"
           />
         )}
-        <p className="text-muted-foreground">{description}</p>
+        <p className="text-muted-foreground h-20">{description}</p>
       </div>
-      <div className="flex items-center justify-between py-4 pt-6 px-4 ">
-        <button
-          onClick={() => openModal(videos)} // Use openModal to open the modal
-          className="btn justify-center rounded-xl bg-[#151515] hover:bg-[#000000] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-4 h-4 mr-2"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-            stroke="currentColor"
+      <div className="flex items-center justify-between py-4 pt-6 px-4">
+        <Bounce>
+          <button
+            onClick={() => openModal(videos)} // Use openModal to open the modal
+            className="btn justify-center rounded-md video hover:bg-[#000000] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
           >
-            <polygon points="6 3 20 12 6 21 6 3"></polygon>
-          </svg>
-          Watch Video
-        </button>
-
-        <ExerciseManagement
-          id={id}
-          program={program}
-          programexercise={programexercise}
-          onDelete={onDelete}
-          date={date}
-        ></ExerciseManagement>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-4 h-4 mr-2"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+              stroke="currentColor"
+            >
+              <polygon points="6 3 20 12 6 21 6 3"></polygon>
+            </svg>
+            Watch Video
+          </button>
+        </Bounce>
+        <Bounce>
+          <ExerciseManagement
+            id={id}
+            program={program}
+            programexercise={programexercise}
+            onDelete={onDelete}
+            date={date}
+          ></ExerciseManagement>
+        </Bounce>
       </div>
     </div>
   );

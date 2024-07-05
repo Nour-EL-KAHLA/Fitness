@@ -52,7 +52,7 @@ function DoneBtn({ id, program, onDelete, programexercise, date }: exerciseId) {
         type="button"
         onClick={DeleteExerciseAction}
         className={
-          "bg-[#04f163] text-white hover:bg-[#14f104] focus-visible:outline-[#efd74e] btn justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+          "done text-white hover:bg-[#14f104] focus-visible:outline-[#efd74e] btn justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
         }
         disabled={loading || date !== todayDate}
       >

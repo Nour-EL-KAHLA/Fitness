@@ -3,6 +3,7 @@ import ExercisesCard from "./ExercisesCard";
 import axios from "axios";
 import AddExercise from "./AddExercise";
 import WatchVideoModel from "../Models/WatchVideoModel";
+import { Fade, Zoom } from "react-awesome-reveal";
 
 function AllExercises() {
   const [exercises, setExercises] = useState<any>();
@@ -61,25 +62,35 @@ function AllExercises() {
   return (
     <>
       <div className="w-full mx-auto  py-8 md:py-12">
-        <div className="flex items-center justify-between mb-6 md:mb-8">
-          <h1 className="text-2xl font-bold md:text-3xl">All Exercises</h1>
-          <AddExercise onAddExercise={handleAddExercise}></AddExercise>
+        <div>
+          <div className="flex items-center justify-between mb-6 md:mb-8">
+            <blockquote className="md:text-3xl text-2xl font-bold text-center text-slate-900">
+              All
+              <span className="before:block ml-2 gradiant before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#FBB915] relative inline-block">
+                <span className="relative text-white"> Exercises</span>
+              </span>
+            </blockquote>
+            <AddExercise onAddExercise={handleAddExercise}></AddExercise>
+          </div>
         </div>
-        <div className=" mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+
+        <div className=" mx-auto grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
           {exercises?.map((element: any) => (
-            <ExercisesCard
-              program={null}
-              programexercise={null}
-              id={element?.id}
-              key={element?.name}
-              name={element?.name}
-              description={element?.description}
-              photos={element?.photos}
-              videos={element?.videos}
-              date=""
-              openModal={openModal}
-              onDelete={handleDelete}
-            ></ExercisesCard>
+            <Zoom>
+              <ExercisesCard
+                program={null}
+                programexercise={null}
+                id={element?.id}
+                key={element?.name}
+                name={element?.name}
+                description={element?.description}
+                photos={element?.photos}
+                videos={element?.videos}
+                date=""
+                openModal={openModal}
+                onDelete={handleDelete}
+              ></ExercisesCard>
+            </Zoom>
           ))}
         </div>
         {isModalOpen && (

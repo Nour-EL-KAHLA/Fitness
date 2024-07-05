@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../providers/AuthProvider";
 import { IoIosFitness } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { Fade, Zoom } from "react-awesome-reveal";
 
 function CoachDashboard() {
   const { user } = useAuth();
@@ -50,13 +51,20 @@ function CoachDashboard() {
   if (loading && !users) return <div>Loading</div>;
   return (
     <>
-      <div className="overflow-x-auto mt-28  px-0">
-        <div className="text-gray-900  ">
+      <Fade className="min-h-screen  bg-svg-backgrounda  ">
+        <div className="text-gray-900 mx-10 lg:mx-24 overflow-x-auto mt-24 px-0">
           <div className="py-4 flex">
-            <h1 className="text-3xl">Members</h1>
+            <div className="flex flex-row justify-center items-center mb-8">
+              <h1 className="text-2xl font-bold md:text-3xl mr-2">My</h1>
+              <blockquote className="md:text-3xl text-2xl font-bold text-center pr-2 text-slate-900">
+                <span className="before:block gradiant before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#FBB915] relative inline-block">
+                  <span className="relative text-white"> Members</span>
+                </span>
+              </blockquote>
+            </div>
           </div>
           <div className="px-0 py-4 flex justify-center ">
-            <table className="w-full text-md bg-white  rounded mb-4 shadow-lg ring-0 ring-gray-400 ">
+            <table className="w-full md:text-sm text-xs bg-white  rounded mb-4 shadow-lg ring-0 ring-gray-400 ">
               <thead>
                 <tr className="border-b">
                   <th className="text-left p-3 px-5">Name</th>
@@ -82,10 +90,10 @@ function CoachDashboard() {
                         <td className="p-3 px-5">
                           <div className="bg-transparent">{elem?.weight}</div>
                         </td>
-                        <td className="p-3 px-5 flex justify-end ">
+                        <Fade className="p-3 px-5 flex justify-end ">
                           <div
-                            className="bg-[#FBB915] w-fit h-fit  flex flex-row 
-  justify-center items-center hover:bg-[#fbd815] rounded-md duration-150 ease-in-out p-3 px-4 gap-2 bg-gradient-to-r from-[#FBCD15] to-[#fbae15] text-black font-bold transition-transform transform-gpu h hover:shadow-lg"
+                            className="bg-[#FBB915] w-fit h-fit  flex flex-row  gradiant
+  justify-center items-center hover:bg-[#fbd815] rounded-md  duration-150 ease-in-out p-3 px-4 gap-2 bg-gradient-to-r from-[#FBCD15] to-[#fbae15] text-black font-bold transition-transform transform-gpu h hover:shadow-lg"
                           >
                             <button onClick={() => handleEditProgram(elem)}>
                               Edit Program
@@ -94,7 +102,7 @@ function CoachDashboard() {
                               <IoIosFitness></IoIosFitness>
                             </div>
                           </div>
-                        </td>
+                        </Fade>
                       </tr>
                     );
                   })}
@@ -102,7 +110,7 @@ function CoachDashboard() {
             </table>
           </div>
         </div>
-      </div>
+      </Fade>
     </>
   );
 }

@@ -22,7 +22,7 @@ function Usernavbar() {
             />
           </svg>
         </summary>
-        <ul className="menu dropdown-content rounded-box z-[1] w-36 p-2 shadow bg-[#FBB915] font-semibold text-md">
+        <ul className="menu dropdown-content rounded-box z-[1] w-36 p-2 shadow gradiant font-semibold text-md">
           <li className=" transition duration-150 ease-in-out rounded-full  hover:bg-[#fbcd15]">
             <Link to={"/profile"}> Profile</Link>
           </li>
@@ -74,7 +74,7 @@ function Usernavbar() {
       </div> */}
 
       <div className="lg:navbar-end hidden text-white lg:flex">
-        <ul className="menu menu-horizontal px-1  text-base">
+        <ul className="menu menu-horizontal px-1  text-base font-semibold">
           <li>
             <NavLink to="/profile" className="hover:text-[#695f25]">
               {({ isActive }) => (

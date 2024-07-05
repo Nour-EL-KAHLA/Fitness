@@ -5,6 +5,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 import { useState } from "react";
+import { Fade, Slide, Zoom } from "react-awesome-reveal";
 function Signup() {
   const {
     register,
@@ -74,7 +75,10 @@ function Signup() {
   return (
     <>
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img className="mx-auto h-14 w-auto" src={logo} alt="Gym" />
+        <Slide>
+          {" "}
+          <img className="mx-auto h-14 w-auto" src={logo} alt="Gym" />
+        </Slide>
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">
           Sign up and create an account
         </h2>
@@ -90,15 +94,16 @@ function Signup() {
           {fields.map((Element: any, i: number) => (
             <>
               <div key={i} className="text-white">
+                {" "}
                 <Inputfield name={Element} />
                 <div className="mt-2">
+                  {" "}
                   <input
                     {...register(Element, { required: true, minLength: 4 })}
                     placeholder={Element}
                     type={Element}
                     className="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#efd74e] sm:text-sm sm:leading-6"
                   ></input>
-
                   {errors[Element] && errors[Element]?.type === "required" && (
                     <p className="text-red-500 text-sm mt-1">
                       This field is required.
@@ -116,14 +121,15 @@ function Signup() {
           {signupError && (
             <p className="text-red-500 text-sm mt-1">{signupError}</p>
           )}
-          <div>
+          <Zoom>
             <button
               type="submit"
-              className="mb-8 flex w-full justify-center mt-12 rounded-md bg-[#FBB915] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
+              className="mb-8 flex w-full justify-center mt-12 rounded-md gradiant px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
             >
               Sign up
             </button>
-          </div>
+          </Zoom>
+
           <Link to={"/signin"} className=" text-[#FBB915] font-light text-sm ">
             Already have an accound ? please{" "}
             <span className="font-bold">Signin</span>

@@ -4,6 +4,7 @@ import healthicon from "../../../assets/healthcare.png";
 import protection from "../../../assets/protection.png";
 import flexibility from "../../../assets/flexibility.png";
 import muscle from "../../../assets/muscle.png";
+import { Bounce, Fade, Hinge, JackInTheBox, Slide } from "react-awesome-reveal";
 const features: any = [
   {
     name: "Health",
@@ -33,25 +34,35 @@ const features: any = [
 function Bodycenter() {
   return (
     <div className="relative">
-      <img className="opacity-100 blur-sm h-full polygon" src={home}></img>
+      <Fade>
+        <img
+          className="opacity-100 blur-sm md:h-auto h-screen  polygon"
+          src={home}
+        ></img>
+      </Fade>
       <div className="z-9 text-white absolute  top-0  text-center  mt-10 w-full tracking-[.3em] ">
         <div className="flex flex-col items-center justify-center">
-          <div className="font-bold text-3xl text-[#FBB915]">WHY US?</div>
-          <div className="font-medium text-xl tracking-[.1em] ">
+          <JackInTheBox className="font-bold text-3xl textgradiant">
+            WHY US?
+          </JackInTheBox>
+          <div className="font-medium text-xl  tracking-[.1em] ">
             COMMUNITY OF HEALTHY PEOPLE COMMITED TO FITNESS
           </div>
-          <div className="bg-[#FBB915] w-1/6 h-1 rounded-full my-4 "></div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="gradiant w-1/6 h-1 rounded-full my-4 "></div>
+          <div className="grid grid-cols-1  mx-auto lg:grid-cols-2 md:grid-cols-2 justify-items-center justify-center gap-y-2 gap-x-4">
             {" "}
-            {features.map((element: any) => (
-              <Bodycenterelem
-                key={element.name}
-                name={element.name}
-                subname={element.subname}
-                info={element.info}
-                icon={element.icon}
-              ></Bodycenterelem>
-            ))}
+            <Bounce cascade duration={400}>
+              {" "}
+              {features.map((element: any) => (
+                <Bodycenterelem
+                  key={element.name}
+                  name={element.name}
+                  subname={element.subname}
+                  info={element.info}
+                  icon={element.icon}
+                ></Bodycenterelem>
+              ))}
+            </Bounce>
           </div>
         </div>
       </div>

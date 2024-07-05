@@ -4,7 +4,7 @@ function SaveChangesBtn() {
   return (
     <button
       type="submit"
-      className="bg-[#FBB915] w-fit h-fit p-1 gap gap-2 rounded-md px-4 flex flex-row 
+      className="gradiant w-fit h-fit p-1 gap gap-2 rounded-md px-4 flex flex-row 
 justify-center items-center hover:bg-[#fbd815] transition duration-150 ease-in-out shadow-lg shadow-[#fbd815]/30 font-semibold"
     >
       Save Changes

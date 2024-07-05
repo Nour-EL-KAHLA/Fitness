@@ -6,13 +6,13 @@ interface elem {
 }
 function Bodycenterelem({ name, subname, info, icon }: elem) {
   return (
-    <div className="bg-black backdrop-blur-sm  bg-black/70 w-72 m-8 tracking-[.1em] text-left p-2 flex flex-row">
-      <img src={icon} className="w-12 h-12 mx-2"></img>
+    <div className="bg-black backdrop-blur-sm  bg-black/70 w-72  lg:m-8 tracking-[.1em] text-left p-2 flex flex-row">
+      <img src={icon} className="md:w-12 md:h-12 md:mx-2  w-8 h-8 mx-1"></img>
       <div className="flex flex-col">
-        <div className="text-lg font-bold">
-          {name}&<span className="text-[#FBB915] ">{subname}</span>
+        <div className="lg:text-lg md:text-base text-sm font-bold">
+          {name}&<span className="textgradiant ">{subname}</span>
         </div>
-        <div className="text-sm ">
+        <div className="lg:text-sm text-xs ">
           {info} Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
           provident saepe quis,
         </div>

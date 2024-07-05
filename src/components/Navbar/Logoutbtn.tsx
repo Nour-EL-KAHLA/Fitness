@@ -13,7 +13,7 @@ function Logoutbtn() {
   };
   return (
     <div>
-      <button onClick={logOut} className=" rounded-full w-full  ">
+      <button onClick={logOut} className="text-base rounded-full w-full  ">
         Logout
       </button>
     </div>

@@ -6,6 +6,7 @@ import { useAuth } from "../../providers/AuthProvider";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
+import { Fade, JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
 
 function Signin() {
   const { register, handleSubmit } = useForm({
@@ -54,10 +55,14 @@ function Signin() {
   return (
     <>
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img className="mx-auto h-14 w-auto" src={logo} alt="Gym" />
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">
+        <Slide>
+          {" "}
+          <img className="mx-auto h-14 w-auto" src={logo} alt="Gym" />
+        </Slide>
+
+        <Fade className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">
           Sign in to your account
-        </h2>
+        </Fade>
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -70,6 +75,7 @@ function Signin() {
           {fields.map((Element: any, i: number) => (
             <>
               <div key={i} className="text-white">
+                {" "}
                 <Inputfield name={Element} />
                 <div className="mt-2 ">
                   <input
@@ -85,14 +91,14 @@ function Signin() {
           {signinError && (
             <p className="text-red-500 text-sm mt-1">{signinError}</p>
           )}
-          <div>
+          <Zoom>
             <button
               type="submit"
-              className="mb-8 flex w-full  mt-12 justify-center rounded-md bg-[#FBB915] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
+              className="mb-8 flex w-full  mt-12 justify-center rounded-md gradiant px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
             >
               Sign in
             </button>
-          </div>
+          </Zoom>
           <Link to={"/signup"} className=" text-[#FBB915] font-light text-sm ">
             If you don't have an account please{" "}
             <span className="font-bold">Signup</span>

@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useAuth } from "../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import SaveChangesBtn from "../../components/Buttons/SaveChangesBtn";
+import { Bounce, Fade, Slide, Zoom } from "react-awesome-reveal";
 
 function Profile() {
   const { user, loading } = useAuth();
@@ -36,7 +37,6 @@ function Profile() {
         data,
         config
       );
-      alert("Profile updated successfully");
     } catch (error) {
       console.error("There has been a problem updating the profile", error);
     }
@@ -75,15 +75,22 @@ function Profile() {
   return (
     <div>
       <Navbar />
-      <div className="mt-4 min-h-screen flex items-center justify-center">
-        <div className="shadow-lg ring-0 ring-gray-400  w-full max-w-2xl rounded-lg border  bg-white text-gray-900 ">
+      <Fade className="md:mt-4 mt-12 mx-2 md:mx-0 min-h-screen flex items-center justify-center ">
+        <div className="shadow-lg ring-0 bg-svg-backgrounda ring-gray-400  w-full max-w-2xl rounded-lg border  bg-white text-gray-900 ">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="p-6">
-              <h3 className="text-2xl font-semibold mb-3">User Profile</h3>
-              <p className="text-sm text-gray-600 mb-6">
-                Update your personal information.
-              </p>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="text-2xl font-semibold mb-3">
+                <div className="flex flex-row justify-center items-center">
+                  <h1 className="text-2xl font-bold md:text-3xl mr-2">My</h1>
+                  <blockquote className="md:text-3xl text-2xl font-bold text-center pr-2 text-slate-900">
+                    <span className="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#FBB915] relative inline-block">
+                      <span className="relative text-white"> Profile</span>
+                    </span>
+                  </blockquote>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 grid-cols-1 gap-8 mt-16">
                 {fields.map((field: any, i) => (
                   <div key={i} className="">
                     <label
@@ -119,6 +126,7 @@ function Profile() {
                         {...register(field.name, field.validation)}
                       />
                     )}
+
                     {errors[field.name] &&
                       errors[field.name]?.type === "required" && (
                         <p className="text-red-500 text-sm m-1">
@@ -141,7 +149,7 @@ function Profile() {
                 ))}{" "}
               </div>
             </div>
-            <div className="p-6 flex items-center justify-end">
+            <Fade className="p-6 flex items-center justify-end">
               {/* <button
                 type="submit"
                 className="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 h-10 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
@@ -149,10 +157,10 @@ function Profile() {
                 Save Changes
               </button> */}
               <SaveChangesBtn></SaveChangesBtn>
-            </div>
+            </Fade>
           </form>
         </div>
-      </div>
+      </Fade>
     </div>
   );
 }

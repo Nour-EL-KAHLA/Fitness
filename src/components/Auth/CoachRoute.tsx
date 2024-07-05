@@ -14,6 +14,7 @@ const CoachRoute = () => {
   return (
     <>
       <Navbar></Navbar>
+
       <Outlet></Outlet>
     </>
   );

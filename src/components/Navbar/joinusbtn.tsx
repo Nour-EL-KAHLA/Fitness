@@ -4,7 +4,7 @@ import forward from "../../assets/forward.png";
 function Joinusbtn() {
   return (
     <div
-      className="bg-[#FBB915] w-fit h-fit p-1 rounded-sm px-4 flex flex-row 
+      className="gradiant w-fit h-fit p-1 rounded-sm px-4 flex flex-row 
   justify-center items-center hover:bg-[#fbd815] transition duration-150 ease-in-out shadow-lg shadow-[#fbd815]/30 "
     >
       <Link to={"/signin"} className="font-bold text-black from-neutral-50 ">

@@ -2,6 +2,7 @@ import { useState } from "react";
 import ExercisesCard from "./ExercisesCard";
 import { compareAsc } from "date-fns";
 import WatchVideoModel from "../Models/WatchVideoModel";
+import { Bounce, Fade, Slide, Zoom } from "react-awesome-reveal";
 interface elem {
   programExercises: any;
   username: string;
@@ -38,7 +39,7 @@ function ExercisesCaroussel({ programExercises, program }: elem) {
           })
           .map((element: any) => (
             <>
-              <div className="carousel-item gap gap-4 m-4 mx-4 ">
+              <Zoom className="carousel-item gap gap-4 m-4 mx-4 ">
                 <ExercisesCard
                   program={program}
                   programexercise={element?.id}
@@ -52,7 +53,7 @@ function ExercisesCaroussel({ programExercises, program }: elem) {
                   openModal={openModal}
                   onDelete={handleDelete}
                 ></ExercisesCard>
-              </div>
+              </Zoom>
             </>
           ))}
       </div>

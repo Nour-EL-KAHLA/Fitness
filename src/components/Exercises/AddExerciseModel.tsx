@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import Inputfield from "../Auth/Inputfield";
-import { Link, useNavigate } from "react-router-dom";
+import { IoIosAddCircle } from "react-icons/io";
 import { useState } from "react";
 import CloudinaryUploadWidget from "../../providers/CloudinaryUploadWidget";
 interface AddExerciseModelProps {
@@ -30,7 +30,7 @@ function AddExerciseModel({ onAddExercise }: AddExerciseModelProps) {
   });
 
   const AddExerciseAction = async (data: any) => {
-    if (!data.name || !data.description) {
+    if (!data.name || !data.description || !data.video || !urlImage) {
       console.error("Missing required fields");
       return;
     }
@@ -64,7 +64,7 @@ function AddExerciseModel({ onAddExercise }: AddExerciseModelProps) {
   const fields: string[] = ["name", "description", "video"];
   if (loading) return <div>Loading</div>;
   return (
-    <div className="modal bg-white" role="dialog">
+    <div className="modal inset-0 bg-black bg-opacity-90  z-60" role="dialog">
       <div className="modal-box bg-white">
         <h3 className="text-lg font-bold">Add a new Exercise!</h3>
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -112,9 +112,9 @@ function AddExerciseModel({ onAddExercise }: AddExerciseModelProps) {
               <label htmlFor="my_modal_7">
                 <button
                   type="submit"
-                  className="mb-8 flex w-full justify-center mt-12 rounded-md bg-[#FBB915] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
+                  className=" btn justify-center rounded-md bg-[#FBB915] py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#fbd815]  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#efd74e]"
                 >
-                  Add
+                  Add exercise <IoIosAddCircle></IoIosAddCircle>
                 </button>
               </label>
             </div>
